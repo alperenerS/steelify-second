@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const HomeScreenStyles = StyleSheet.create({
+const homeScreenStyles = StyleSheet.create({
   header: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -71,4 +71,4 @@ const HomeScreenStyles = StyleSheet.create({
   },
 });
 
-export default HomeScreenStyles;
+export default homeScreenStyles;

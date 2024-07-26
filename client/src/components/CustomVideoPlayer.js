@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import VideoPlayer from 'react-native-video-controls';
+import React, { useState, useEffect } from 'react';
+import { View, TouchableOpacity, Alert } from 'react-native';
+import Video from 'react-native-video';
+import Icon from 'react-native-vector-icons/Ionicons';
+import customVideoPlayerStyles from '../styles/CustomVideoPlayerStyles';
 
 const CustomVideoPlayer = ({ source, style }) => {
   const [paused, setPaused] = useState(true);
@@ -9,41 +11,37 @@ const CustomVideoPlayer = ({ source, style }) => {
     setPaused(!paused);
   };
 
+  useEffect(() => {
+    return () => {
+      setPaused(true); // Pause the video when the component unmounts
+    };
+  }, []);
+
+  const handleBuffer = (buffer) => {
+    console.log('Buffering:', buffer);
+  };
+
+  const handleError = (error) => {
+    console.log('Video Error:', error);
+    Alert.alert('Video Error', 'An error occurred while playing the video. Please try again later.');
+  };
+
   return (
-    <View style={style}>
-      <VideoPlayer
+    <View style={[customVideoPlayerStyles.container, style]}>
+      <Video
         source={source}
-        style={styles.video}
+        style={customVideoPlayerStyles.video}
         resizeMode="cover"
         paused={paused}
-        disableVolume
-        disableFullscreen
-        disableBack
-        onPlayPress={handlePlayPause}
-        onPausePress={handlePlayPause}
         repeat
+        onBuffer={handleBuffer}
+        onError={handleError}
       />
-      <TouchableOpacity style={styles.controlOverlay} onPress={handlePlayPause}>
-        {/* Ekstra buton veya kontrol ekleyebilirsiniz */}
+      <TouchableOpacity style={customVideoPlayerStyles.controlOverlay} onPress={handlePlayPause}>
+        <Icon name={paused ? 'play' : 'pause'} size={30} color="#FFF" />
       </TouchableOpacity>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  video: {
-    width: '100%',
-    height: '100%',
-  },
-  controlOverlay: {
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default CustomVideoPlayer;

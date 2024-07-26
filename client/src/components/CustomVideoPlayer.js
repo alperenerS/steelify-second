@@ -17,9 +17,6 @@ const CustomVideoPlayer = ({ source, style }) => {
     };
   }, []);
 
-  const handleBuffer = (buffer) => {
-    console.log('Buffering:', buffer);
-  };
 
   const handleError = (error) => {
     console.log('Video Error:', error);
@@ -34,7 +31,6 @@ const CustomVideoPlayer = ({ source, style }) => {
         resizeMode="cover"
         paused={paused}
         repeat
-        onBuffer={handleBuffer}
         onError={handleError}
       />
       <TouchableOpacity style={customVideoPlayerStyles.controlOverlay} onPress={handlePlayPause}>

@@ -1,73 +1,57 @@
 import { StyleSheet } from 'react-native';
+import colors from './Colors';
 
 const homeScreenStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: colors.background,
+  },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginVertical: 16,
+    textAlign: 'center',
+    color: colors.text,
   },
   topSection: {
     marginBottom: 24,
     alignItems: 'center',
-  },
-  topImage: {
-    width: '100%',
-    height: 200,
-    borderRadius: 8,
-  },
-  topText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginVertical: 8,
-  },
-  topButton: {
-    backgroundColor: '#FF6F00',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
-  },
-  topButtonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: 'bold',
+    backgroundColor: colors.cardBackground,
+    borderRadius: 10,
   },
   section: {
+    marginVertical: 16,
+    backgroundColor: colors.cardBackground,
+    borderRadius: 10,
+  },
+  cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
     marginVertical: 16,
   },
-  sectionHeader: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  viewAll: {
-    color: '#FF6F00',
-    fontWeight: 'bold',
-  },
   card: {
-    width: 250,
-    marginRight: 16,
+    width: 280,
+    marginHorizontal: 8,
+    borderRadius: 16,
+    overflow: 'hidden',
+    backgroundColor: colors.cardBackground,
   },
   video: {
     width: '100%',
     height: 150,
-    borderRadius: 8,
-  },
-  cardTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 8,
-  },
-  cardSubtitle: {
-    fontSize: 14,
-    color: 'gray',
   },
   blogCard: {
     marginBottom: 16,
-    marginHorizontal: 16,
-    borderRadius: 8,
-    backgroundColor: '#f0f0f0',
+    marginHorizontal: 8,
+    borderRadius: 16,
+    backgroundColor: colors.cardBackground,
+  },
+  cardTitle: {
+    fontSize: 18,
+  },
+  cardSubtitle: {
+    fontSize: 14,
   },
 });
 

@@ -1,13 +1,13 @@
 const colors = {
-    primary: '#FF6F00',
-    secondary: '#8ECAE6', 
-    background: '#FFFFFF',
-    text: '#333333',
-    buttonPrimaryBackground: '#FF6F00',
-    buttonPrimaryText: '#FFFFFF',
-    buttonSecondaryBackground: '#8ECAE6',
-    buttonSecondaryText: '#FFFFFF',
-  };
-  
-  export default colors;
-  
+  primary: '#FF6F00',
+  secondary: '#90CAF9',
+  background: '#F0F0F0',
+  cardBackground: '#FFFFFF',
+  text: '#4F4F4F',
+  buttonPrimaryBackground: '#FF6F00',
+  buttonPrimaryText: '#FFFFFF',
+  buttonSecondaryBackground: '#90CAF9',
+  buttonSecondaryText: '#FFFFFF',
+};
+
+export default colors;

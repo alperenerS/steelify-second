@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import colors from './colors';
+import {StyleSheet} from 'react-native';
+import colors from './Colors';
 
 export default StyleSheet.create({
   container: {
@@ -10,26 +10,33 @@ export default StyleSheet.create({
   text: {
     color: colors.text,
   },
+  card: {
+    backgroundColor: colors.cardBackground,
+    borderRadius: 10,
+    marginVertical: 10,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 3,
+  },
   buttonPrimary: {
     backgroundColor: colors.buttonPrimaryBackground,
-    color: colors.buttonPrimaryText,
-    padding: 10,
     borderRadius: 5,
     alignItems: 'center',
   },
   buttonPrimaryText: {
     color: colors.buttonPrimaryText,
-    fontSize: 16,
+    fontSize: 14,
   },
   buttonSecondary: {
     backgroundColor: colors.buttonSecondaryBackground,
-    color: colors.buttonSecondaryText,
-    padding: 10,
     borderRadius: 5,
     alignItems: 'center',
   },
   buttonSecondaryText: {
     color: colors.buttonSecondaryText,
-    fontSize: 16,
+    fontSize: 14,
   },
 });

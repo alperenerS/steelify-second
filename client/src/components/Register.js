@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput, Button, Card, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import registerStyles from '../styles/RegisterStyles';
 import colors from '../styles/Colors';
 
@@ -17,23 +18,29 @@ const Register = ({ onRegister }) => {
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
   const handleRegister = () => {
-    if (name && surname && email && password && company && position && phone) {
-      const userInfo = {
-        name,
-        surname,
-        email,
-        password,
-        company,
-        position,
-        phone,
-      };
-      onRegister(userInfo);
+    if (name && surname && email && password && confirmPassword && company && position && phone) {
+      if (password === confirmPassword) {
+        const userInfo = {
+          name,
+          surname,
+          email,
+          password,
+          company,
+          position,
+          phone,
+        };
+        onRegister(userInfo);
+      } else {
+        setError('Parolalar uyuşmuyor. Lütfen kontrol edin!');
+      }
     } else {
       setError('Lütfen tüm alanları doldurun!');
     }
@@ -68,7 +75,16 @@ const Register = ({ onRegister }) => {
               label="Şifre"
               value={password}
               onChangeText={setPassword}
-              secureTextEntry
+              secureTextEntry={!showPassword}
+              right={<TextInput.Icon icon={() => <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} onPress={() => setShowPassword(!showPassword)} />} />}
+              style={registerStyles.input}
+            />
+            <TextInput
+              label="Şifreyi Onayla"
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry={!showPassword}
+              right={<TextInput.Icon icon={() => <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} onPress={() => setShowPassword(!showPassword)} />} />}
               style={registerStyles.input}
             />
             <TextInput

@@ -14,6 +14,7 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
+        //Log in & Register screens will remove from the tab bar
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Ana Sayfa') {

@@ -15,15 +15,15 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Home') {
+          if (route.name === 'Ana Sayfa') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Photo') {
+          } else if (route.name === 'Fotoğraf') {
             iconName = focused ? 'camera' : 'camera-outline';
-          } else if (route.name === 'Rating') {
+          } else if (route.name === 'Puanlama') {
             iconName = focused ? 'star' : 'star-outline';
-          } else if (route.name === 'Profile') {
+          } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'Login') {
+          } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
@@ -32,11 +32,11 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Photo" component={PhotoScreen} />
-      <Tab.Screen name="Rating" component={RatingScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="Login" component={LoginScreen} />
+      <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
+      <Tab.Screen name="Fotoğraf" component={PhotoScreen} />
+      <Tab.Screen name="Puanlama" component={RatingScreen} />
+      <Tab.Screen name="Profil" component={ProfileScreen} />
+      <Tab.Screen name="Giriş Yap" component={LoginScreen} />
     </Tab.Navigator>
   );
 };

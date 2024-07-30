@@ -6,6 +6,7 @@ import PhotoScreen from '../screens/PhotoScreen';
 import RatingScreen from '../screens/RatingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,8 @@ const TabNavigator = () => {
             iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
+          } else if (route.name === 'Kayıt Ol') {
+            iconName = focused ? 'person-add' : 'person-add-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -37,6 +40,7 @@ const TabNavigator = () => {
       <Tab.Screen name="Puanlama" component={RatingScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />
+      <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
     </Tab.Navigator>
   );
 };

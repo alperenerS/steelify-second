@@ -8,6 +8,8 @@ const colors = {
   buttonPrimaryText: '#FFFFFF',
   buttonSecondaryBackground: '#90CAF9',
   buttonSecondaryText: '#FFFFFF',
+  inputBackground: '#FFFFFF',
+  inputFocus: '#9E9E9E',
 };
 
 export default colors;

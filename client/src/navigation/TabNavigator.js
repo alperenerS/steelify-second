@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import PhotoScreen from '../screens/PhotoScreen';
 import RatingScreen from '../screens/RatingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import LoginScreen from '../screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,8 @@ const TabNavigator = () => {
             iconName = focused ? 'star' : 'star-outline';
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person' : 'person-outline';
+          } else if (route.name === 'Login') {
+            iconName = focused ? 'log-in' : 'log-in-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -33,6 +36,7 @@ const TabNavigator = () => {
       <Tab.Screen name="Photo" component={PhotoScreen} />
       <Tab.Screen name="Rating" component={RatingScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Login" component={LoginScreen} />
     </Tab.Navigator>
   );
 };

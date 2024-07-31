@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { TextInput, Button, Card, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import registerStyles from '../styles/RegisterStyles';
-import colors from '../styles/Colors';
+import colors from '../styles/colors2';
 
 const theme = {
   ...DefaultTheme,

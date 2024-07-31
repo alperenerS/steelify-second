@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 import Register from '../components/Register';
-import GlobalStyles from '../styles/GlobalStyles2';
+import GlobalStyles from '../styles/GlobalStyles';
 
 const RegisterScreen = ({ navigation }) => {
   const handleRegister = (userInfo) => {

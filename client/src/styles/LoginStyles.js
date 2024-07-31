@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import colors from './Colors';
+import colors from './colors2';
 
 const LoginStyles = StyleSheet.create({
   container: {

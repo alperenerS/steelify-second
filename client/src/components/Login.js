@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { TextInput, Button, Card, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import loginStyles from '../styles/LoginStyles';
-import colors from '../styles/Colors';
+import colors from '../styles/colors2';
 
 const theme = {
   ...DefaultTheme,

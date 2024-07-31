@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Profile from '../components/Profile';
-import globalStyles from '../styles/GlobalStyles2';
+import globalStyles from '../styles/GlobalStyles';
 import ProfileStyles from '../styles/ProfileStyles';
 
 const userInfo = {

@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Linking, View, Text} from 'react-native';
 import {Card, Title, Paragraph, Button} from 'react-native-paper';
 import CustomVideoPlayer from '../components/CustomVideoPlayer';
-import globalStyles from '../styles/GlobalStyles2';
+import globalStyles from '../styles/GlobalStyles';
 import homeScreenStyles from '../styles/HomeScreenStyles';
 
 const HomeScreen = ({navigation}) => {

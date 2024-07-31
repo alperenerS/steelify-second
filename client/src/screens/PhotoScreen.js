@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import globalStyles from '../styles/GlobalStyles';
+import globalStyles from '../styles/GlobalStyles2';
 
 const PhotoScreen = ({ navigation }) => {
   const takePhoto = () => {

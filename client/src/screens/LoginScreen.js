@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import Login from '../components/Login';
-import globalStyles from '../styles/GlobalStyles';
+import globalStyles from '../styles/GlobalStyles2';
 
 const LoginScreen = ({ navigation }) => {
   const handleLogin = () => {

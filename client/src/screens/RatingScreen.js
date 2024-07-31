@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import RatingItem from '../components/RatingItem';
-import globalStyles from '../styles/GlobalStyles';
+import globalStyles from '../styles/GlobalStyles2';
 
 const ratings = [
   { id: 1, name: 'Ahmet Yılmaz', description: 'Bu kişi kaynak tekniklerinde uzman.', rating: 4.5 },

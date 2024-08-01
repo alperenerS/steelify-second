@@ -13,6 +13,7 @@ const forgotPasswordStyles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     color: colors.primary,
+    textAlign: 'center',
   },
   formContainer: {
     width: '100%',
@@ -44,6 +45,12 @@ const forgotPasswordStyles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  paragraph: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 20,
+    color: '#666',
   },
 });
 

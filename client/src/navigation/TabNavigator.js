@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import CardScreen from '../screens/CardScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        //Log in & Register screens will remove from the tab bar
+        //TODO: Log in & Register screens will remove from the tab bar
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Ana Sayfa') {
@@ -32,6 +33,8 @@ const TabNavigator = () => {
             iconName = focused ? 'person-add' : 'person-add-outline';
           } else if (route.name === 'Şifre Sıfırla') {
             iconName = focused ? 'key' : 'key-outline';
+          } else if (route.name === 'Şifremi Unuttum') {
+            iconName = focused ? 'help' : 'help-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -46,6 +49,7 @@ const TabNavigator = () => {
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />
       <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
       <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
+      <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
     </Tab.Navigator>
   );
 };

@@ -9,7 +9,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   const handleForgotPassword = () => {
-    navigation.navigate('ResetPassword');
+    navigation.navigate('Şifremi Unuttum');
   };
 
   return (

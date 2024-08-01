@@ -7,6 +7,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import CardScreen from '../screens/CardScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -21,8 +22,6 @@ const TabNavigator = () => {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Fotoğraf') {
             iconName = focused ? 'camera' : 'camera-outline';
-          } else if (route.name === 'Puanlama') {
-            iconName = focused ? 'star' : 'star-outline';
           } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'Kartlar') {
@@ -31,6 +30,8 @@ const TabNavigator = () => {
             iconName = focused ? 'log-in' : 'log-in-outline';
           } else if (route.name === 'Kayıt Ol') {
             iconName = focused ? 'person-add' : 'person-add-outline';
+          } else if (route.name === 'Şifre Sıfırla') {
+            iconName = focused ? 'key' : 'key-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -44,6 +45,7 @@ const TabNavigator = () => {
       <Tab.Screen name="Kartlar" component={CardScreen} />
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />
       <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
+      <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
     </Tab.Navigator>
   );
 };

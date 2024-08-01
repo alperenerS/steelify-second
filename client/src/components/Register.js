@@ -26,7 +26,7 @@ const Register = ({ onRegister }) => {
   const [error, setError] = useState('');
 
   const handleRegister = () => {
-    if (name && surname && email && password && confirmPassword && company && position && phone) {
+    if (name && surname && email && password && confirmPassword && phone) {
       if (password === confirmPassword) {
         const userInfo = {
           name,

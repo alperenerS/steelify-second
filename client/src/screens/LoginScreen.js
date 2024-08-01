@@ -8,9 +8,13 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate('Home');
   };
 
+  const handleForgotPassword = () => {
+    navigation.navigate('ResetPassword');
+  };
+
   return (
     <View style={globalStyles.container}>
-      <Login onLogin={handleLogin} />
+      <Login onLogin={handleLogin} onForgotPassword={handleForgotPassword} />
     </View>
   );
 };

@@ -19,6 +19,15 @@ export class AuthService {
   ) {}
 
   async register(user: UserDto) {
+    const phoneNumberCheck = await this.userService.findOneByPhoneNumber(
+      user.phoneNumber,
+    );
+    if (phoneNumberCheck) {
+      throw new BadRequestException(
+        'There is an account with this phone number !',
+      );
+    }
+
     const newUser = await this.userService.createUser({
       ...user,
     });

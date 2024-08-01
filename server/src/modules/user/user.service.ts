@@ -14,6 +14,12 @@ export class UserService {
     return await this.userRepository.findByPk(id);
   }
 
+  async findOneByPhoneNumber(phoneNumber: string): Promise<User> {
+    return await this.userRepository.findOne({
+      where: { phoneNumber: phoneNumber },
+    });
+  }
+
   async createUser(user: UserDto): Promise<User> {
     if (!user.password) {
       throw new Error('Password is required'); // veya başka bir işlem yapabilirsiniz

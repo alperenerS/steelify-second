@@ -1,4 +1,9 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Inject,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { USER_REPOSITORY } from '../../core/constants';
 import { User } from './user.entity';
 import { UserDto } from './dto/user.dto';
@@ -85,4 +90,14 @@ export class UserService {
   async deleteUser(id: number) {
     return await this.userRepository.destroy({ where: { id: id } });
   }
+
+    async resPassword(newPassword: string, id: number) {
+        
+        const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+        return await this.userRepository.update(
+        { password: hashedPassword.toString() },
+        { where: { id: id } },
+        );
+    }
 }

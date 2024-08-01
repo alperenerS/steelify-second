@@ -55,4 +55,18 @@ export class UserController {
       .status(HttpStatus.OK)
       .json({ message: 'User Successfully Deleted !', data: data });
   }
+
+  @Put('updatePasswd/:id')
+  async resPassword(
+    @Param('id') id: number,
+    @Res() res: Response,
+    @Req() req: Request,
+  ) {
+    const newPassword = req.body.newPassword;
+    const newPasswd = await this.userService.resPassword(newPassword, id);
+
+    return res
+      .status(HttpStatus.CREATED)
+      .json({ message: 'Password Successfully Changed !', data: newPasswd });
+  }
 }

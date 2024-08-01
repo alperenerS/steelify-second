@@ -91,13 +91,25 @@ export class UserService {
     return await this.userRepository.destroy({ where: { id: id } });
   }
 
-    async resPassword(newPassword: string, id: number) {
-        
-        const hashedPassword = await bcrypt.hash(newPassword, 12);
+  async resPassword(newPassword: string, id: number) {
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
 
-        return await this.userRepository.update(
-        { password: hashedPassword.toString() },
-        { where: { id: id } },
-        );
+    return await this.userRepository.update(
+      { password: hashedPassword.toString() },
+      { where: { id: id } },
+    );
+  }
+
+  async findUserWhoLoggedIn(token: string) {
+    const decodedToken = this.jwtService.verify(token, {
+      publicKey: process.env.JWTKEY,
+    });
+    const userId = decodedToken.id;
+    const existingUser = this.userRepository.findByPk(userId);
+
+    if (!existingUser) {
+      throw new NotFoundException('User can not be found !');
     }
+    return userId;
+  }
 }

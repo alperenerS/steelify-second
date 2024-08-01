@@ -49,8 +49,6 @@ export class AuthService {
       existingUser.email,
       existingUser.name,
       existingUser.surname,
-      existingUser.companyName,
-      existingUser.position,
       existingUser.phoneNumber,
     );
 
@@ -62,8 +60,6 @@ export class AuthService {
     email: string,
     name: string,
     surname: string,
-    companyName: string,
-    position: string,
     phoneNumber: string,
   ): Promise<string> {
     const payload = {
@@ -71,8 +67,6 @@ export class AuthService {
       email,
       name,
       surname,
-      companyName,
-      position,
       phoneNumber,
     };
 

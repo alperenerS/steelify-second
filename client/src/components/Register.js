@@ -20,8 +20,7 @@ const Register = ({ onRegister }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [company, setCompany] = useState('');
-  const [position, setPosition] = useState('');
+
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
@@ -33,8 +32,6 @@ const Register = ({ onRegister }) => {
           surname,
           email,
           password,
-          company,
-          position,
           phone,
         };
         onRegister(userInfo);

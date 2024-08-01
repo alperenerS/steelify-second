@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
 import PhotoScreen from '../screens/PhotoScreen';
-import RatingScreen from '../screens/RatingScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
+import CardScreen from '../screens/CardScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +25,8 @@ const TabNavigator = () => {
             iconName = focused ? 'star' : 'star-outline';
           } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
+          } else if (route.name === 'Kartlar') {
+            iconName = focused ? 'albums' : 'albums-outline';
           } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
           } else if (route.name === 'Kayıt Ol') {
@@ -38,8 +40,8 @@ const TabNavigator = () => {
     >
       <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
       <Tab.Screen name="Fotoğraf" component={PhotoScreen} />
-      <Tab.Screen name="Puanlama" component={RatingScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
+      <Tab.Screen name="Kartlar" component={CardScreen} />
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />
       <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
     </Tab.Navigator>

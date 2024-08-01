@@ -88,18 +88,6 @@ const Register = ({ onRegister }) => {
               style={registerStyles.input}
             />
             <TextInput
-              label="Şirket Adı"
-              value={company}
-              onChangeText={setCompany}
-              style={registerStyles.input}
-            />
-            <TextInput
-              label="Pozisyon"
-              value={position}
-              onChangeText={setPosition}
-              style={registerStyles.input}
-            />
-            <TextInput
               label="Telefon Numarası"
               value={phone}
               onChangeText={setPhone}

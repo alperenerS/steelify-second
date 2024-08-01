@@ -25,6 +25,7 @@ export class AuthController {
     }
 
     const newUser = await this.authService.register(user);
+    
 
     return res
       .status(HttpStatus.CREATED)

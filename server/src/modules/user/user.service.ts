@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { USER_REPOSITORY } from '../core/constants';
+import { USER_REPOSITORY } from '../../core/constants';
 import { User } from './user.entity';
 import { UserDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
@@ -33,5 +33,11 @@ export class UserService {
 
   async findByEmail(email: string): Promise<User> {
     return await this.userRepository.findOne({ where: { email: email } });
+  }
+
+  async getUserProfile(user_id: number): Promise<User> {
+    return await this.userRepository.findByPk(user_id, {
+      attributes: { exclude: ['password', 'createdAt', 'updatedAt', 'id'] },
+    });
   }
 }

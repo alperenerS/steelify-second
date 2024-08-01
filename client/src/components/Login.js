@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { TextInput, Button, Card, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import loginStyles from '../styles/LoginStyles';
 import colors from '../styles/Colors';
@@ -12,7 +12,7 @@ const theme = {
   },
 };
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onForgotPassword }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -44,6 +44,9 @@ const Login = ({ onLogin }) => {
               secureTextEntry
               style={loginStyles.input}
             />
+            <TouchableOpacity onPress={onForgotPassword}>
+              <Text style={loginStyles.forgotPassword}>Şifreni mi unuttun?</Text>
+            </TouchableOpacity>
             {error ? <Text style={loginStyles.error}>{error}</Text> : null}
           </Card.Content>
           <Card.Actions>

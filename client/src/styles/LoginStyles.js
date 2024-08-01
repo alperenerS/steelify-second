@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import colors from './Colors';
 
-const LoginStyles = StyleSheet.create({
+const loginStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -32,6 +32,12 @@ const LoginStyles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
+  forgotPassword: {
+    marginTop: -10,
+    marginBottom: 20,
+    color: colors.primary,
+    textAlign: 'right',
+  },
 });
 
-export default LoginStyles;
+export default loginStyles;

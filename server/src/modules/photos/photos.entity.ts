@@ -27,13 +27,11 @@ export class Photos extends Model<Photos> {
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
   })
   comments: string;
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
   })
   errors: string;
 }

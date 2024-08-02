@@ -9,5 +9,6 @@ import { UserModule } from '../user/user.module';
   imports: [UserModule],
   providers: [PhotosService, ...photosProvider, ...usersProvider],
   controllers: [PhotosController],
+  exports: [PhotosService],
 })
 export class PhotosModule {}

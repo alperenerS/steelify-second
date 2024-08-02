@@ -41,7 +41,7 @@ export class Assessment extends Model<Assessment> {
   comments: string;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.STRING,
     allowNull: false,
   })
   errors: string;
@@ -49,5 +49,5 @@ export class Assessment extends Model<Assessment> {
   @Column({
     type: DataType.STRING,
   })
-  reviewed_image_links: string;
+  reviewed_image_link: string;
 }

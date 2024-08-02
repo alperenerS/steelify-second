@@ -6,9 +6,11 @@ import { PhotosModule } from '../photos/photos.module';
 import { photosProvider } from '../photos/photos.provider';
 import { UserModule } from '../user/user.module';
 import { usersProvider } from '../user/user.provider';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { DatabaseModule } from 'src/core/database/database.module';
 
 @Module({
-  imports: [PhotosModule, UserModule],
+  imports: [PhotosModule, UserModule, DatabaseModule],
   providers: [
     AssessmentService,
     ...assessmentProvider,

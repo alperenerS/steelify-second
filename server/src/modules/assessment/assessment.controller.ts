@@ -1,5 +1,6 @@
 import {
   Controller,
+  Get,
   HttpStatus,
   InternalServerErrorException,
   Post,
@@ -70,5 +71,14 @@ export class AssessmentController {
       console.log(error);
       throw new InternalServerErrorException(error);
     }
+  }
+
+  @Get('random')
+  async getRandomPhoto(@Res() res: Response) {
+    const randomPhotos = await this.assessmentService.getRandomPhoto();
+
+    return res
+      .status(HttpStatus.OK)
+      .json({ message: 'Successfully Fetched !', data: randomPhotos });
   }
 }

@@ -20,21 +20,18 @@ const Register = ({ onRegister }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [company, setCompany] = useState('');
-  const [position, setPosition] = useState('');
+
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
   const handleRegister = () => {
-    if (name && surname && email && password && confirmPassword && company && position && phone) {
+    if (name && surname && email && password && confirmPassword && phone) {
       if (password === confirmPassword) {
         const userInfo = {
           name,
           surname,
           email,
           password,
-          company,
-          position,
           phone,
         };
         onRegister(userInfo);
@@ -85,18 +82,6 @@ const Register = ({ onRegister }) => {
               onChangeText={setConfirmPassword}
               secureTextEntry={!showPassword}
               right={<TextInput.Icon icon={() => <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} onPress={() => setShowPassword(!showPassword)} />} />}
-              style={registerStyles.input}
-            />
-            <TextInput
-              label="Şirket Adı"
-              value={company}
-              onChangeText={setCompany}
-              style={registerStyles.input}
-            />
-            <TextInput
-              label="Pozisyon"
-              value={position}
-              onChangeText={setPosition}
               style={registerStyles.input}
             />
             <TextInput

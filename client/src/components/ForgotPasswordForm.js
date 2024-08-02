@@ -23,6 +23,7 @@ const ForgotPasswordForm = ({ onSubmit }) => {
           onChangeText={setEmail}
           keyboardType="email-address"
           autoCapitalize="none"
+          placeholderTextColor="#000"
         />
       </View>
       <TouchableOpacity style={forgotPasswordStyles.button} onPress={handleSubmit}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import resetPasswordStyles from '../styles/ResetPasswordStyles';
 
@@ -26,6 +26,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
+          placeholderTextColor="#000"
         />
         <Ionicons
           name={showPassword ? "eye-off" : "eye"}
@@ -41,6 +42,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry={!showConfirmPassword}
+          placeholderTextColor="#000"
         />
         <Ionicons
           name={showConfirmPassword ? "eye-off" : "eye"}

@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
-import PhotoScreen from '../screens/PhotoScreen';
+import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
@@ -42,8 +42,8 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      {/* <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
-      <Tab.Screen name="Fotoğraf" component={PhotoScreen} /> */}
+      {/* <Tab.Screen name="Ana Sayfa" component={HomeScreen} /> */}
+      <Tab.Screen name="Fotoğraf" component={CameraScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
       {/* <Tab.Screen name="Kartlar" component={CardScreen} /> */}
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />

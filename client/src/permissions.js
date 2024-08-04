@@ -1,10 +1,10 @@
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 import { Platform, Alert } from 'react-native';
 
-export const checkAndRequestInternetPermission = async () => {
+export const checkAndRequestCameraPermission = async () => {
   const permission = Platform.select({
-    ios: PERMISSIONS.IOS.INTERNET,
-    android: PERMISSIONS.ANDROID.INTERNET,
+    ios: PERMISSIONS.IOS.CAMERA,
+    android: PERMISSIONS.ANDROID.CAMERA,
   });
 
   const result = await check(permission);
@@ -20,7 +20,7 @@ export const checkAndRequestInternetPermission = async () => {
       if (requestResult === RESULTS.GRANTED) {
         console.log('İzin verildi.');
       } else {
-        Alert.alert('İnternet İzni Gerekli', 'Uygulamayı kullanmak için internet izni vermelisiniz.');
+        Alert.alert('Kamera İzni Gerekli', 'Uygulamayı kullanmak için kamera izni vermelisiniz.');
       }
       break;
     case RESULTS.LIMITED:
@@ -32,7 +32,7 @@ export const checkAndRequestInternetPermission = async () => {
       break;
     case RESULTS.BLOCKED:
       console.log('İzin reddedildi ve artık istenemez.');
-      Alert.alert('İnternet İzni Engellendi', 'İzin reddedildi ve artık istenemez. Lütfen ayarlardan izni açın.');
+      Alert.alert('Kamera İzni Engellendi', 'İzin reddedildi ve artık istenemez. Lütfen ayarlardan izni açın.');
       break;
   }
 };

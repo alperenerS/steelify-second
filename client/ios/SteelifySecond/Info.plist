@@ -7,6 +7,12 @@
 			<key>NSAllowsArbitraryLoads</key>
 			<true />
 		</dict>
+		<key>NSCameraUsageDescription</key>
+		<string>Uygulama fotoğraf çekmek için kameranızı kullanmak istiyor</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Uygulama fotoğraf galerisine erişmek istiyor</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>Uygulama fotoğraf galerisine fotoğraf eklemek istiyor</string>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>en</string>
 		<key>CFBundleDisplayName</key>

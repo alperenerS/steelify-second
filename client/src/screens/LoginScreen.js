@@ -10,7 +10,7 @@ const LoginScreen = ({ navigation }) => {
       const response = await loginUser(email, password);
       console.log('User logged in successfully:', response);
       Alert.alert('Giriş Başarılı', 'Giriş işlemi başarıyla tamamlandı.', [
-        { text: 'OK', onPress: () => navigation.navigate('Anasayfa') },
+        { text: 'OK', onPress: () => navigation.navigate('Profil') },
       ]);
     } catch (error) {
       console.error('Login error:', error);

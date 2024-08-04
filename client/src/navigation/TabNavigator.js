@@ -43,9 +43,9 @@ const TabNavigator = () => {
       })}
     >
       {/* <Tab.Screen name="Ana Sayfa" component={HomeScreen} />
-      <Tab.Screen name="Fotoğraf" component={PhotoScreen} />
+      <Tab.Screen name="Fotoğraf" component={PhotoScreen} /> */}
       <Tab.Screen name="Profil" component={ProfileScreen} />
-      <Tab.Screen name="Kartlar" component={CardScreen} /> */}
+      {/* <Tab.Screen name="Kartlar" component={CardScreen} /> */}
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />
       <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
       <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />

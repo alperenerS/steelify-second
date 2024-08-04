@@ -13,14 +13,14 @@ const theme = {
 };
 
 const Login = ({ onLogin, onForgotPassword }) => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = () => {
-    if (username === 'user' && password === 'password') {
-      onLogin();
-    } else {
+  const handleLogin = async () => {
+    try {
+      await onLogin(email, password);
+    } catch (err) {
       setError('Kullanıcı adı veya şifre hatalı!');
     }
   };
@@ -32,10 +32,11 @@ const Login = ({ onLogin, onForgotPassword }) => {
           <Card.Title title="Giriş Yap" />
           <Card.Content>
             <TextInput
-              label="Kullanıcı Adı"
-              value={username}
-              onChangeText={setUsername}
+              label="Email"
+              value={email}
+              onChangeText={setEmail}
               style={loginStyles.input}
+              keyboardType="email-address"
             />
             <TextInput
               label="Şifre"

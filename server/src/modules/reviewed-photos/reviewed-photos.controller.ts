@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Controller,
   Get,
   HttpStatus,
@@ -27,10 +28,41 @@ export class ReviewedPhotosController {
     const myReviewedPhotos =
       await this.reviewedPhotosService.getReviewedPhotos(loggedUserId);
 
-
     return res.status(HttpStatus.OK).json({
       message: 'ReviewedPHotos Successfully Fetched !',
       data: myReviewedPhotos,
     });
+  }
+
+  @Get('comparedOkPhotos')
+  async getComparedOkPhotos(@Req() req: Request, @Res() res: Response) {
+    const image_id = req.body.image_id;
+
+    if (!image_id) {
+      throw new BadRequestException('ImageId Required !');
+    }
+
+    const comparedPhotos =
+      await this.reviewedPhotosService.compareOkReviewedphotos(image_id);
+
+    return res
+      .status(HttpStatus.OK)
+      .json({ message: 'Successfully Fetched !', data: comparedPhotos });
+  }
+
+  @Get('comparedNokPhotos')
+  async comparedNokPhotos(@Req() req: Request, @Res() res: Response) {
+    const image_id = req.body.image_id;
+
+    if (!image_id) {
+      throw new BadRequestException('ImageId Required !');
+    }
+
+    const comparedPhotos =
+      await this.reviewedPhotosService.compareNOKReviewedPhotos(image_id);
+
+    return res
+      .status(HttpStatus.OK)
+      .json({ message: 'Successfully Fetched !', data: comparedPhotos });
   }
 }

@@ -70,7 +70,7 @@ export class AssessmentController {
       const reviewedPhotosDto: reviewedPhotosDto = {
         image_id: image_id,
         reviewed_image_id: reviewedImage.id,
-        user_id: photographer,
+        user_id: loggedUserId,
         status: status,
       };
 

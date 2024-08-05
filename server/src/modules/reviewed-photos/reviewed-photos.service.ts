@@ -16,7 +16,21 @@ export class ReviewedPhotosService {
     });
   }
 
-  async createReviewedPhotos(dto:reviewedPhotosDto):Promise<ReviewedPhotos>{
+  async createReviewedPhotos(dto: reviewedPhotosDto): Promise<ReviewedPhotos> {
     return this.reviewedPhotosRepository.create(dto);
+  }
+
+  async compareOkReviewedphotos(image_id: number): Promise<ReviewedPhotos[]> {
+    const comparedOKPhotos = await this.reviewedPhotosRepository.findAll({
+      where: { image_id: image_id, status: 'OK' },
+    });
+    return comparedOKPhotos;
+  }
+
+  async compareNOKReviewedPhotos(image_id: number) {
+    const comparedNOKPhotos = await this.reviewedPhotosRepository.findAll({
+      where: { image_id: image_id, status: 'NOK' },
+    });
+    return comparedNOKPhotos;
   }
 }

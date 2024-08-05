@@ -43,7 +43,7 @@ const TabNavigator = () => {
       })}
     >
       {/* <Tab.Screen name="Ana Sayfa" component={HomeScreen} /> */}
-      <Tab.Screen name="Fotoğraf" component={CameraScreen} />
+      <Tab.Screen name="Kamera" component={CameraScreen} />
       <Tab.Screen name="Profil" component={ProfileScreen} />
       {/* <Tab.Screen name="Kartlar" component={CardScreen} /> */}
       <Tab.Screen name="Giriş Yap" component={LoginScreen} />

@@ -9,6 +9,7 @@ import { User } from './user.entity';
 import { UserDto } from './dto/user.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Injectable()
 export class UserService {
@@ -54,22 +55,19 @@ export class UserService {
     });
   }
 
-  async updateOwnData(user: UserDto, token: string) {
+  async updateOwnData(user: UpdateUserDto, token: string) {
     const decodedToken = this.jwtService.verify(token, {
       publicKey: process.env.JWTKEY,
     });
     const userId = decodedToken.id;
-    const hashedPassword = await bcrypt.hash(user.password, 12);
-
     const existingUser = this.userRepository.findByPk(userId);
 
     if (!existingUser) {
       throw new NotFoundException('User can not be found !');
     }
 
-    const newUserDto: UserDto = {
+    const newUserDto: UpdateUserDto = {
       email: user.email,
-      password: hashedPassword,
       name: user.name,
       surname: user.surname,
       phoneNumber: user.phoneNumber,
@@ -78,7 +76,6 @@ export class UserService {
     return await this.userRepository.update(
       {
         email: newUserDto.email,
-        password: newUserDto.password,
         name: newUserDto.name,
         surname: newUserDto.surname,
         phoneNumber: newUserDto.phoneNumber,

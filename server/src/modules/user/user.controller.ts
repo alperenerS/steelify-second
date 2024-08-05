@@ -15,6 +15,7 @@ import { JwtGuard } from '../auth/guard/jwt.guard';
 import { UserService } from './user.service';
 import { Request, Response } from 'express';
 import { UserDto } from './dto/user.dto';
+import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Controller('api/user')
 @UseGuards(JwtGuard)
@@ -36,7 +37,7 @@ export class UserController {
 
   @Put('updateData')
   async updateOwnData(
-    @Body() user: UserDto,
+    @Body() user: UpdateUserDto,
     @Req() req: Request,
     @Res() res: Response,
   ) {

@@ -8,7 +8,7 @@ const CameraScreen = ({ navigation }) => {
 
   const handleCapture = (uri) => {
     setPhotoUri(uri);
-    navigation.navigate('Preview', { photoUri: uri });
+    navigation.navigate('Fotoğraf', { photoUri: uri });
   };
 
   return (

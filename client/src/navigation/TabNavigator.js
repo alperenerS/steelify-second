@@ -1,27 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import HomeScreen from '../screens/HomeScreen';
 import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import CardScreen from '../screens/CardScreen';
+import HomeScreen from '../screens/HomeScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import { isLoggedIn } from '../utils/auth'; // Giriş durumu kontrol fonksiyonu
+import { AuthContext } from '../context/AuthContext';
+
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const { loggedIn, checkLoginStatus } = useContext(AuthContext);
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const status = await isLoggedIn();
-      setLoggedIn(status);
-    };
-
     checkLoginStatus();
   }, []);
 
@@ -30,14 +25,12 @@ const TabNavigator = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Ana Sayfa') {
+          if (route.name === 'Anasayfa') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Kamera') {
             iconName = focused ? 'camera' : 'camera-outline';
           } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'Kartlar') {
-            iconName = focused ? 'albums' : 'albums-outline';
           } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
           } else if (route.name === 'Kayıt Ol') {
@@ -53,17 +46,15 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
+      <Tab.Screen name="Anasayfa" component={HomeScreen} />
       <Tab.Screen name="Kamera" component={CameraScreen} />
       {loggedIn ? (
         <Tab.Screen name="Profil" component={ProfileScreen} />
       ) : (
         <>
           <Tab.Screen name="Giriş Yap" component={LoginScreen} />
-          {/* <Tab.Screen name="Kayıt Ol" component={RegisterScreen} /> */}
         </>
       )}
-      <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
-      <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
     </Tab.Navigator>
   );
 };

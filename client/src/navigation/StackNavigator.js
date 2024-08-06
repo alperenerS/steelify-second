@@ -7,6 +7,7 @@ import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import CameraScreen from '../screens/CameraScreen';
 import PhotoScreen from '../screens/PhotoScreens';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
       <Stack.Screen name="Kamera" component={CameraScreen} />
       <Stack.Screen name="Fotoğraf" component={PhotoScreen} />
+      <Stack.Screen name="Profil" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };

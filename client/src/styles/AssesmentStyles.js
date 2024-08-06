@@ -37,6 +37,12 @@ const assesmentStyles = StyleSheet.create({
   overlayLabelRight: {
     color: '#33cc33',
   },
+  noMoreCardsText: {
+    fontSize: 18,
+    color: 'black',
+    textAlign: 'center',
+    margin: 20,
+  },
 });
 
 export default assesmentStyles;

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import Assesment from '../components/Assesment';
 import assesmentStyles from '../styles/AssesmentStyles';
@@ -16,6 +16,7 @@ const data = [
 ];
 
 const AssesmentScreen = () => {
+  const [noMoreCards, setNoMoreCards] = useState(false);
   const leftOverlayRef = useRef(null);
   const rightOverlayRef = useRef(null);
 
@@ -41,24 +42,38 @@ const AssesmentScreen = () => {
     if (x < 0) {
       const opacity = Math.min(Math.abs(x) / 200, 1);
       leftOverlayRef.current?.setNativeProps({ opacity });
+      rightOverlayRef.current?.setNativeProps({ opacity: 0 });
     } else if (x > 0) {
       const opacity = Math.min(x / 200, 1);
       rightOverlayRef.current?.setNativeProps({ opacity });
+    } else {
+      leftOverlayRef.current?.setNativeProps({ opacity: 0 });
     }
+  };
+
+  const onSwipedAll = () => {
+    setNoMoreCards(true);
   };
 
   return (
     <View style={assesmentStyles.container}>
-      <Swiper
-        cards={data}
-        renderCard={(card) => <Assesment uri={card.uri} />}
-        onSwipedRight={onSwipedRight}
-        onSwipedLeft={onSwipedLeft}
-        onSwiping={onSwiping}
-        cardIndex={0}
-        backgroundColor={'#f0f0f0'}
-        stackSize={3}
-      />
+      {noMoreCards ? (
+        <Text style={assesmentStyles.noMoreCardsText}>
+          Şimdilik Değerlendirilecek Bir Şey Yok. Daha Sonra Tekrar Deneyin.
+        </Text>
+      ) : (
+        <Swiper
+          cards={data}
+          renderCard={(card) => <Assesment uri={card.uri} />}
+          onSwipedRight={onSwipedRight}
+          onSwipedLeft={onSwipedLeft}
+          onSwiping={onSwiping}
+          cardIndex={0}
+          backgroundColor={'#f0f0f0'}
+          stackSize={3}
+          onSwipedAll={onSwipedAll}
+        />
+      )}
       <Animatable.View ref={leftOverlayRef} style={[assesmentStyles.overlayLabel]}>
         <Icon name="times" style={[assesmentStyles.overlayLabelText, assesmentStyles.overlayLabelLeft]} />
       </Animatable.View>

@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { View } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
-import Card from '../components/Card';
-import cardStyles from '../styles/CardStyles';
+import Card from '../components/Assesment';
+import cardStyles from '../styles/AssesmentStyles';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 

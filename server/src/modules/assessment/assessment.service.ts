@@ -27,10 +27,10 @@ export class AssessmentService {
     return image.user_id;
   }
 
-  async getRandomPhoto(): Promise<Assessment[]> {
-    return await this.assessmentRepository.findAll({
-      order: [this.sequelize.fn('RANDOM')],
-      limit: 10,
-    });
-  }
+//   async getRandomPhoto(): Promise<Assessment[]> {
+//     return await this.assessmentRepository.findAll({
+//       order: [this.sequelize.fn('RANDOM')],
+//       limit: 10,
+//     });
+//   }
 }

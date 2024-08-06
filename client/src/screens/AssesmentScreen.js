@@ -1,27 +1,36 @@
-import React, { useRef, useState } from 'react';
-import { View, Text } from 'react-native';
+import React, { useRef, useState, useEffect } from 'react';
+import { View, Text, ActivityIndicator } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import Assesment from '../components/Assesment';
 import assesmentStyles from '../styles/AssesmentStyles';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-const data = [
-  { id: 1, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image1.jpg' },
-  { id: 2, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg' },
-  { id: 3, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image3.jpg' },
-  { id: 4, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image4.jpg' },
-  { id: 5, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image5.jpg' },
-  { id: 6, uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image6.jpg' },
-];
+import { getRandomAssesments } from '../services/AssesmentService';
 
 const AssesmentScreen = () => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [noMoreCards, setNoMoreCards] = useState(false);
   const leftOverlayRef = useRef(null);
   const rightOverlayRef = useRef(null);
 
-  const onSwipedRight = (assesmentIndex) => {
-    console.log('Accepted:', data[assesmentIndex]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getRandomAssesments();
+        setData(result);
+      } catch (error) {
+        console.error('Error fetching assessments:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const onSwipedRight = (assessmentIndex) => {
+    console.log('Accepted:', data[assessmentIndex]);
     rightOverlayRef.current?.animate('fadeIn', 300).then(() => {
       setTimeout(() => {
         rightOverlayRef.current?.animate('fadeOut', 300);
@@ -29,8 +38,8 @@ const AssesmentScreen = () => {
     });
   };
 
-  const onSwipedLeft = (assesmentIndex) => {
-    console.log('Rejected:', data[assesmentIndex]);
+  const onSwipedLeft = (assessmentIndex) => {
+    console.log('Rejected:', data[assessmentIndex]);
     leftOverlayRef.current?.animate('fadeIn', 300).then(() => {
       setTimeout(() => {
         leftOverlayRef.current?.animate('fadeOut', 300);
@@ -46,14 +55,24 @@ const AssesmentScreen = () => {
     } else if (x > 0) {
       const opacity = Math.min(x / 200, 1);
       rightOverlayRef.current?.setNativeProps({ opacity });
+      leftOverlayRef.current?.setNativeProps({ opacity: 0 });
     } else {
       leftOverlayRef.current?.setNativeProps({ opacity: 0 });
+      rightOverlayRef.current?.setNativeProps({ opacity: 0 });
     }
   };
 
   const onSwipedAll = () => {
     setNoMoreCards(true);
   };
+
+  if (loading) {
+    return (
+      <View style={assesmentStyles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
 
   return (
     <View style={assesmentStyles.container}>
@@ -64,7 +83,7 @@ const AssesmentScreen = () => {
       ) : (
         <Swiper
           cards={data}
-          renderCard={(card) => <Assesment uri={card.uri} />}
+          renderCard={(card) => <Assesment uri={card.reviewed_image_link} />}
           onSwipedRight={onSwipedRight}
           onSwipedLeft={onSwipedLeft}
           onSwiping={onSwiping}
@@ -74,11 +93,11 @@ const AssesmentScreen = () => {
           onSwipedAll={onSwipedAll}
         />
       )}
-      <Animatable.View ref={leftOverlayRef} style={[assesmentStyles.overlayLabel]}>
-        <Icon name="times" style={[assesmentStyles.overlayLabelText, assesmentStyles.overlayLabelLeft]} />
+      <Animatable.View ref={leftOverlayRef} style={[assesmentStyles.overlayLabel, assesmentStyles.overlayLabelLeft]}>
+        <Icon name="times" style={assesmentStyles.overlayLabelText} />
       </Animatable.View>
-      <Animatable.View ref={rightOverlayRef} style={[assesmentStyles.overlayLabel]}>
-        <Icon name="check" style={[assesmentStyles.overlayLabelText, assesmentStyles.overlayLabelRight]} />
+      <Animatable.View ref={rightOverlayRef} style={[assesmentStyles.overlayLabel, assesmentStyles.overlayLabelRight]}>
+        <Icon name="check" style={assesmentStyles.overlayLabelText} />
       </Animatable.View>
     </View>
   );

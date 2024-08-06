@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image } from 'react-native';
 import assesmentStyles from '../styles/AssesmentStyles';
 
 const Assesment = ({ uri }) => {

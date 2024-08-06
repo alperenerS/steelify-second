@@ -1,13 +1,13 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
-import cardStyles from '../styles/AssesmentStyles';
+import assesmentStyles from '../styles/AssesmentStyles';
 
-const Card = ({ uri }) => {
+const Assesment = ({ uri }) => {
   return (
-    <View style={cardStyles.card}>
-      <Image style={cardStyles.image} source={{ uri }} />
+    <View style={assesmentStyles.card}>
+      <Image style={assesmentStyles.image} source={{ uri }} />
     </View>
   );
 };
 
-export default Card;
+export default Assesment;

@@ -1,10 +1,11 @@
 import React from 'react';
 import { View, Image, StyleSheet } from 'react-native';
+import cardStyles from '../styles/AssesmentStyles';
 
 const Card = ({ uri }) => {
   return (
-    <View style={styles.card}>
-      <Image style={styles.image} source={{ uri }} />
+    <View style={cardStyles.card}>
+      <Image style={cardStyles.image} source={{ uri }} />
     </View>
   );
 };

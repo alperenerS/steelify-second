@@ -43,7 +43,7 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Anasayfa" component={HomeScreen} />
+      {/* <Tab.Screen name="Anasayfa" component={HomeScreen} /> */}
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
       {loggedIn ? (
         <>

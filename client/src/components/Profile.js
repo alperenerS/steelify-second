@@ -23,7 +23,7 @@ const Profile = ({ name, surname, email, phone }) => {
       <View style={ProfileStyles.header}>
         <Avatar.Icon size={60} icon="account" style={ProfileStyles.avatar} />
         <View style={ProfileStyles.headerText}>
-          <Title>{`${name} ${surname}`}</Title>
+          <Title style={ProfileStyles.paragraph} >{`${name} ${surname}`}</Title>
         </View>
       </View>
       <Card.Content>
@@ -34,12 +34,13 @@ const Profile = ({ name, surname, email, phone }) => {
           <Icon name="phone" size={16} /> {phone}
         </Paragraph>
       </Card.Content>
-      <Card.Actions>
-        <Button icon="account-edit" mode="contained" style={ProfileStyles.button}>
-          Edit Profile
+      <Card.Actions style={ProfileStyles.actions}>
+        <Button icon="logout" mode="contained" style={ProfileStyles.logoutButton} onPress={handleLogout}>
+          Çıkış Yap
         </Button>
-        <Button icon="logout" mode="contained" style={ProfileStyles.button} onPress={handleLogout}>
-          Logout
+        <View style={ProfileStyles.spacer} />
+        <Button icon="account-edit" mode="contained" style={ProfileStyles.button}>
+          Profili Düzenle
         </Button>
       </Card.Actions>
     </Card>

@@ -9,28 +9,32 @@ import RegisterScreen from '../screens/RegisterScreen';
 import CardScreen from '../screens/CardScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import { isLoggedIn } from '../utils/auth'; // Giriş durumu kontrol fonksiyonu
+import { isLoggedIn } from '../utils/auth';
+import { useIsFocused } from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const isFocused = useIsFocused();
+
+  const checkLoginStatus = async () => {
+    const status = await isLoggedIn();
+    setLoggedIn(status);
+  };
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const status = await isLoggedIn();
-      setLoggedIn(status);
-    };
-
-    checkLoginStatus();
-  }, []);
+    if (isFocused) {
+      checkLoginStatus();
+    }
+  }, [isFocused]);
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'Ana Sayfa') {
+          if (route.name === 'Anasayfa') {
             iconName = focused ? 'home' : 'home-outline';
           } else if (route.name === 'Kamera') {
             iconName = focused ? 'camera' : 'camera-outline';
@@ -53,6 +57,7 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
+      <Tab.Screen name="Anasayfa" component={HomeScreen} />
       <Tab.Screen name="Kamera" component={CameraScreen} />
       {loggedIn ? (
         <Tab.Screen name="Profil" component={ProfileScreen} />
@@ -62,8 +67,8 @@ const TabNavigator = () => {
           {/* <Tab.Screen name="Kayıt Ol" component={RegisterScreen} /> */}
         </>
       )}
-      <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
-      <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
+      {/* <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
+      <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} /> */}
     </Tab.Navigator>
   );
 };

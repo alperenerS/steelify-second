@@ -1,6 +1,7 @@
 import {
-    Body,
+  Body,
   Controller,
+  Get,
   HttpStatus,
   InternalServerErrorException,
   Post,
@@ -59,7 +60,6 @@ export class PhotosController {
 
       const photo = await this.photoService.createPhoto(photosDto);
 
-
       return res
         .status(HttpStatus.CREATED)
         .json({ message: 'Successfully Created !', data: photo });
@@ -67,5 +67,14 @@ export class PhotosController {
       console.log(error);
       throw new InternalServerErrorException(error);
     }
+  }
+
+  @Get('random')
+  async getRandomPhoto(@Res() res: Response) {
+    const randomPhotos = await this.photoService.getRandomPhoto();
+
+    return res
+      .status(HttpStatus.OK)
+      .json({ message: 'Successfully Fetched !', data: randomPhotos });
   }
 }

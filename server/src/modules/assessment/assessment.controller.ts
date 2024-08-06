@@ -85,12 +85,12 @@ export class AssessmentController {
     }
   }
 
-  @Get('random')
-  async getRandomPhoto(@Res() res: Response) {
-    const randomPhotos = await this.assessmentService.getRandomPhoto();
+//   @Get('random')
+//   async getRandomPhoto(@Res() res: Response) {
+//     const randomPhotos = await this.assessmentService.getRandomPhoto();
 
-    return res
-      .status(HttpStatus.OK)
-      .json({ message: 'Successfully Fetched !', data: randomPhotos });
-  }
+//     return res
+//       .status(HttpStatus.OK)
+//       .json({ message: 'Successfully Fetched !', data: randomPhotos });
+//   }
 }

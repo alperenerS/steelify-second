@@ -5,6 +5,7 @@ import { User } from 'src/modules/user/user.entity';
 import { Photos } from 'src/modules/photos/photos.entity';
 import { Assessment } from 'src/modules/assessment/assessment.entity';
 import { ReviewedPhotos } from 'src/modules/reviewed-photos/reviewed-photos.entity';
+import { Pin } from 'src/modules/pin/pin.entity';
 
 export const databaseProviders = [
   {
@@ -26,7 +27,7 @@ export const databaseProviders = [
       }
       const sequelize = new Sequelize(config);
 
-      sequelize.addModels([User, Photos, Assessment, ReviewedPhotos]);
+      sequelize.addModels([User, Photos, Assessment, ReviewedPhotos, Pin]);
 
       await sequelize.sync();
       return sequelize;

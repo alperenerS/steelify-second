@@ -9,6 +9,7 @@ import { AssessmentModule } from './modules/assessment/assessment.module';
 import { ReviewedPhotosModule } from './modules/reviewed-photos/reviewed-photos.module';
 import { MailModule } from './modules/mail/mail.module';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { PinModule } from './modules/pin/pin.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     ReviewedPhotosModule,
     MailModule,
     MailerModule,
+    PinModule,
   ],
   controllers: [AppController],
   providers: [AppService],

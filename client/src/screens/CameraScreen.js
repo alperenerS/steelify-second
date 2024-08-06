@@ -11,6 +11,9 @@ const CameraScreen = ({ navigation }) => {
   useEffect(() => {
     if (isFocused) {
       setPhotoUri(null);
+      navigation.getParent()?.setOptions({
+        tabBarVisible: true,
+      });
     }
   }, [isFocused]);
 

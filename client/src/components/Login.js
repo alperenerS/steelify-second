@@ -37,6 +37,7 @@ const Login = ({ onLogin, onForgotPassword, onRegister }) => {
               onChangeText={setEmail}
               style={loginStyles.input}
               keyboardType="email-address"
+              autoCapitalize="none"
             />
             <TextInput
               label="Şifre"
@@ -44,6 +45,7 @@ const Login = ({ onLogin, onForgotPassword, onRegister }) => {
               onChangeText={setPassword}
               secureTextEntry
               style={loginStyles.input}
+              autoCapitalize="none"
             />
             <View style={loginStyles.linkContainer}>
               <TouchableOpacity onPress={onRegister}>

@@ -67,6 +67,7 @@ const Register = ({ onRegister }) => {
               onChangeText={setEmail}
               keyboardType="email-address"
               style={registerStyles.input}
+              autoCapitalize="none"
             />
             <TextInput
               label="Şifre"

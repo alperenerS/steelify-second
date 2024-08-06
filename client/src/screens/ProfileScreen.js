@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text } from 'react-native';
 import Profile from '../components/Profile';
 import globalStyles from '../styles/GlobalStyles';
 import ProfileStyles from '../styles/ProfileStyles';
 import { getUserInfo } from '../services/ProfileService';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../context/AuthContext';
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const navigation = useNavigation();
+  const { loggedIn, checkLoginStatus } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const token = await AsyncStorage.getItem('access_token');
-        if (!token) {
-          navigation.navigate('Giriş Yap');
-          return;
-        }
-
         const data = await getUserInfo();
         setUserInfo(data);
       } catch (err) {
@@ -31,8 +24,12 @@ const ProfileScreen = () => {
       }
     };
 
-    fetchUserInfo();
-  }, []);
+    if (loggedIn) {
+      fetchUserInfo();
+    } else {
+      navigation.navigate('Giriş Yap');
+    }
+  }, [loggedIn]);
 
   if (loading) {
     return (

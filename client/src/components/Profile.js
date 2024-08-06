@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { Card, Avatar, Paragraph, Button, Title } from 'react-native-paper';
 import ProfileStyles from '../styles/ProfileStyles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-import { logoutUser } from '../services/LogoutService';
+import { AuthContext } from '../context/AuthContext';
 
 const Profile = ({ name, surname, email, phone }) => {
   const navigation = useNavigation();
+  const { logout } = useContext(AuthContext);
 
   const handleLogout = async () => {
     try {
-      await logoutUser();
-      navigation.navigate('Giriş Yap');
+      await logout();
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Giriş Yap' }],
+      });
     } catch (error) {
       console.error('Failed to logout:', error);
     }

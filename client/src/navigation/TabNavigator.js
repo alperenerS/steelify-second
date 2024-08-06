@@ -1,33 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import HomeScreen from '../screens/HomeScreen';
 import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
-import CardScreen from '../screens/CardScreen';
+import HomeScreen from '../screens/HomeScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import { isLoggedIn } from '../utils/auth';
-import { useIsFocused } from '@react-navigation/native';
+import { AuthContext } from '../context/AuthContext';
+
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  const isFocused = useIsFocused();
-
-  const checkLoginStatus = async () => {
-    const status = await isLoggedIn();
-    setLoggedIn(status);
-  };
+  const { loggedIn, checkLoginStatus } = useContext(AuthContext);
 
   useEffect(() => {
-    if (isFocused) {
-      checkLoginStatus();
-    }
-  }, [isFocused]);
+    checkLoginStatus();
+  }, []);
 
   return (
     <Tab.Navigator
@@ -40,8 +31,6 @@ const TabNavigator = () => {
             iconName = focused ? 'camera' : 'camera-outline';
           } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'Kartlar') {
-            iconName = focused ? 'albums' : 'albums-outline';
           } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
           } else if (route.name === 'Kayıt Ol') {
@@ -64,11 +53,8 @@ const TabNavigator = () => {
       ) : (
         <>
           <Tab.Screen name="Giriş Yap" component={LoginScreen} />
-          {/* <Tab.Screen name="Kayıt Ol" component={RegisterScreen} /> */}
         </>
       )}
-      {/* <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
-      <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} /> */}
     </Tab.Navigator>
   );
 };

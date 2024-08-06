@@ -35,13 +35,13 @@ const Profile = ({ name, surname, email, phone }) => {
         </Paragraph>
       </Card.Content>
       <Card.Actions style={ProfileStyles.actions}>
-        <Button icon="logout" mode="contained" style={ProfileStyles.logoutButton} onPress={handleLogout}>
-          Çıkış Yap
-        </Button>
-        <View style={ProfileStyles.spacer} />
-        <Button icon="account-edit" mode="contained" style={ProfileStyles.button}>
+      <Button icon="account-edit" mode="contained" style={ProfileStyles.button}>
           Profili Düzenle
-        </Button>
+      </Button>
+      <View style={ProfileStyles.spacer} />
+      <Button icon="logout" mode="contained" style={ProfileStyles.logoutButton} onPress={handleLogout}>
+          Çıkış Yap
+      </Button>
       </Card.Actions>
     </Card>
   );

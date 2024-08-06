@@ -8,7 +8,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
-import CardScreen from '../screens/AssesmentScreen';
+import AssesmentScreen from '../screens/AssesmentScreen';
 import { AuthContext } from '../context/AuthContext';
 
 const Tab = createBottomTabNavigator();
@@ -48,11 +48,11 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Anasayfa" component={HomeScreen} />
+      {/* <Tab.Screen name="Anasayfa" component={HomeScreen} /> */}
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
       {loggedIn ? (
         <>
-          <Tab.Screen name="Değerlendir" component={CardScreen} />
+          <Tab.Screen name="Değerlendir" component={AssesmentScreen} />
           <Tab.Screen name="Profil" component={ProfileScreen} />
         </>
       ) : (

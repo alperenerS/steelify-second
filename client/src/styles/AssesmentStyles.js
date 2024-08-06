@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const cardStyles = StyleSheet.create({
+const assesmentStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f0f0',
@@ -39,4 +39,4 @@ const cardStyles = StyleSheet.create({
   },
 });
 
-export default cardStyles;
+export default assesmentStyles;

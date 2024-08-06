@@ -26,9 +26,13 @@ const LoginScreen = ({ navigation }) => {
     navigation.navigate('Şifremi Unuttum');
   };
 
+  const handleRegister = () => {
+    navigation.navigate('Kayıt Ol');
+  };
+
   return (
     <View style={globalStyles.container}>
-      <Login onLogin={handleLogin} onForgotPassword={handleForgotPassword} />
+      <Login onLogin={handleLogin} onForgotPassword={handleForgotPassword} onRegister={handleRegister} />
     </View>
   );
 };

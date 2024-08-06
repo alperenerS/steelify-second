@@ -12,7 +12,7 @@ const theme = {
   },
 };
 
-const Login = ({ onLogin, onForgotPassword }) => {
+const Login = ({ onLogin, onForgotPassword, onRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -45,9 +45,14 @@ const Login = ({ onLogin, onForgotPassword }) => {
               secureTextEntry
               style={loginStyles.input}
             />
-            <TouchableOpacity onPress={onForgotPassword}>
-              <Text style={loginStyles.forgotPassword}>Şifreni mi unuttun?</Text>
-            </TouchableOpacity>
+            <View style={loginStyles.linkContainer}>
+              <TouchableOpacity onPress={onRegister}>
+                <Text style={loginStyles.register}>Hesap Oluştur</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={onForgotPassword}>
+                <Text style={loginStyles.forgotPassword}>Şifreni mi unuttun?</Text>
+              </TouchableOpacity>
+            </View>
             {error ? <Text style={loginStyles.error}>{error}</Text> : null}
           </Card.Content>
           <Card.Actions>

@@ -32,7 +32,7 @@ const Register = ({ onRegister }) => {
           surname,
           email,
           password,
-          phone,
+          phoneNumber: phone,
         };
         onRegister(userInfo);
       } else {

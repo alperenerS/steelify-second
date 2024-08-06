@@ -1,22 +1,23 @@
-import { API_BASE_URL } from '../config';
+import axios from 'axios';
+import {API_BASE_URL} from '../config';
 
-export const registerUser = async (userInfo) => {
+export const registerUser = async userInfo => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await axios.post(
+      `${API_BASE_URL}/auth/register`,
+      userInfo,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-      body: JSON.stringify(userInfo),
-    });
-
-    if (!response.ok) {
-      throw new Error('Kayıt işlemi başarısız oldu');
-    }
-
-    return await response.json();
+    );
+    return response.data;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error(
+      'Error during user registration:',
+      error.response || error.message || error,
+    );
+    throw error.response ? error.response.data : new Error('Network Error');
   }
 };

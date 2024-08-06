@@ -13,6 +13,7 @@ const RegisterScreen = ({ navigation }) => {
         { text: 'OK', onPress: () => navigation.navigate('Giriş Yap') },
       ]);
     } catch (error) {
+      console.error('Registration error:', error);
       Alert.alert('Kayıt Hatası', 'Kayıt işlemi sırasında bir hata oluştu. Lütfen tekrar deneyin.');
     }
   };

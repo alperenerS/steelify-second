@@ -42,7 +42,17 @@ const ProfileStyles = StyleSheet.create({
     color: colors.text,
     marginBottom: 10,
   },
+  actions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
   button: {
+    backgroundColor: colors.primary,
+  },
+  logoutButton: {
+    justifyContent: 'flex-start',
     backgroundColor: colors.primary,
   },
   spacer: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import HomeScreen from '../screens/HomeScreen';
@@ -9,19 +9,30 @@ import RegisterScreen from '../screens/RegisterScreen';
 import CardScreen from '../screens/CardScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import { isLoggedIn } from '../utils/auth'; // Giriş durumu kontrol fonksiyonu
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const status = await isLoggedIn();
+      setLoggedIn(status);
+    };
+
+    checkLoginStatus();
+  }, []);
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        //TODO: Log in & Register screens will remove from the tab bar
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === 'Ana Sayfa') {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Fotoğraf') {
+          } else if (route.name === 'Kamera') {
             iconName = focused ? 'camera' : 'camera-outline';
           } else if (route.name === 'Profil') {
             iconName = focused ? 'person' : 'person-outline';
@@ -42,12 +53,15 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      {/* <Tab.Screen name="Ana Sayfa" component={HomeScreen} /> */}
       <Tab.Screen name="Kamera" component={CameraScreen} />
-      <Tab.Screen name="Profil" component={ProfileScreen} />
-      {/* <Tab.Screen name="Kartlar" component={CardScreen} /> */}
-      <Tab.Screen name="Giriş Yap" component={LoginScreen} />
-      <Tab.Screen name="Kayıt Ol" component={RegisterScreen} />
+      {loggedIn ? (
+        <Tab.Screen name="Profil" component={ProfileScreen} />
+      ) : (
+        <>
+          <Tab.Screen name="Giriş Yap" component={LoginScreen} />
+          {/* <Tab.Screen name="Kayıt Ol" component={RegisterScreen} /> */}
+        </>
+      )}
       <Tab.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
       <Tab.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
     </Tab.Navigator>

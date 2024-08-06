@@ -83,7 +83,7 @@ const AssesmentScreen = () => {
       ) : (
         <Swiper
           cards={data}
-          renderCard={(card) => <Assesment uri={card.reviewed_image_link} />}
+          renderCard={(card) => <Assesment uri={card.image_link} />}
           onSwipedRight={onSwipedRight}
           onSwipedLeft={onSwipedLeft}
           onSwiping={onSwiping}

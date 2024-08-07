@@ -55,7 +55,6 @@ const TabNavigator = () => {
       <Tab.Screen name="Değerlendir" component={loggedIn ? AssesmentScreen : LoginScreen} />
       <Tab.Screen name="Profil" component={loggedIn ? ProfileScreen : LoginScreen} />
       {!loggedIn && <Tab.Screen name="Giriş Yap" component={LoginScreen} />}
-      {!loggedIn && <Tab.Screen name="PIN Girişi" component={PINScreen} />}
     </Tab.Navigator>
   );
 };

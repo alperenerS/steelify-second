@@ -29,6 +29,7 @@ const forgotPasswordStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
+    color: '#000',  // Metin rengini siyah yapar
   },
   icon: {
     marginLeft: -35,
@@ -51,6 +52,11 @@ const forgotPasswordStyles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     color: '#666',
+  },
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
   },
 });
 

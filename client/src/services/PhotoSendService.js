@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
-import { API_BASE_URL } from '../config'; // API_BASE_URL tanımınızı içeren bir dosya
+import { API_BASE_URL } from '../config';
 
 const sendPhoto = async (photoUri, comments, errors) => {
   const formData = new FormData();
@@ -10,11 +10,11 @@ const sendPhoto = async (photoUri, comments, errors) => {
   formData.append('image_link', {
     uri: photoUri,
     type: 'image/jpeg',
-    name: 'photo.jpg',
+    name: `photo_${Date.now()}.jpg`,  // Fotoğraf ismini benzersiz yapıyoruz
   });
 
   try {
-    const bearerToken = await AsyncStorage.getItem('access_token'); // Token'ı AsyncStorage'dan alın
+    const bearerToken = await AsyncStorage.getItem('access_token');
 
     if (!bearerToken) {
       throw new Error('Bearer token not found');
@@ -23,9 +23,10 @@ const sendPhoto = async (photoUri, comments, errors) => {
     const response = await axios.post(`${API_BASE_URL}/photos/send`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `Bearer ${bearerToken}`, // Bearer token ekleniyor
+        'Authorization': `Bearer ${bearerToken}`,
       },
     });
+
     console.log('Photo upload response:', response.data);
     return response.data;
   } catch (error) {

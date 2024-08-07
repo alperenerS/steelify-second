@@ -5,10 +5,7 @@ import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
 import HomeScreen from '../screens/HomeScreen';
-import ResetPasswordScreen from '../screens/ResetPasswordScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
-import PINScreen from '../screens/PINScreen'; // PINScreen'i import et
 import { AuthContext } from '../context/AuthContext';
 
 const Tab = createBottomTabNavigator();
@@ -37,8 +34,6 @@ const TabNavigator = () => {
             iconName = focused ? 'help' : 'help-outline';
           } else if (route.name === 'Değerlendir') {
             iconName = focused ? 'albums' : 'albums-outline';
-          } else if (route.name === 'PIN Girişi') {
-            iconName = focused ? 'lock-closed' : 'lock-closed-outline';
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -47,9 +42,14 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
-      <Tab.Screen name="Değerlendir" component={loggedIn ? AssesmentScreen : LoginScreen} />
-      <Tab.Screen name="Profil" component={loggedIn ? ProfileScreen : LoginScreen} />
-      {!loggedIn && <Tab.Screen name="Giriş Yap" component={LoginScreen} />}
+      {loggedIn ? (
+        <>
+          <Tab.Screen name="Değerlendir" component={AssesmentScreen} />
+          <Tab.Screen name="Profil" component={ProfileScreen} />
+        </>
+      ) : (
+        <Tab.Screen name="Giriş Yap" component={LoginScreen} />
+      )}
     </Tab.Navigator>
   );
 };

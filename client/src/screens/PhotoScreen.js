@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, Button, Alert } from 'react-native';
+import { View, Image, ScrollView, Button, Alert, BackHandler } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import PhotoInputs from '../components/PhotoInputs';
 import PhotoScreenStyles from '../styles/PhotoScreenStyles';
 import sendPhoto from '../services/PhotoSendService';
@@ -13,11 +14,28 @@ const PhotoScreen = ({ route, navigation }) => {
     try {
       await sendPhoto(photoUri, comment, error);
       Alert.alert('Kaydedildi', 'Hata ve yorum başarıyla kaydedildi.');
-      navigation.navigate('Profil'); // Kaydettikten sonra Camera ekranına geri dön
+      navigation.replace('Fotoğraf Çek'); // Replace the current screen with "Fotoğraf Çek"
     } catch (error) {
       Alert.alert('Hata', 'Fotoğraf gönderilemedi. Lütfen tekrar deneyin.');
     }
   };
+
+  // Prevent navigating back to "Fotoğraf" screen
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        if (navigation.isFocused()) {
+          navigation.replace('Fotoğraf Çek'); // Replace the current screen with "Fotoğraf Çek"
+          return true;
+        }
+        return false;
+      };
+
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [navigation])
+  );
 
   return (
     <ScrollView contentContainerStyle={PhotoScreenStyles.container}>

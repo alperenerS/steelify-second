@@ -6,7 +6,7 @@ import RegisterScreen from '../screens/RegisterScreen';
 import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import CameraScreen from '../screens/CameraScreen';
-import PhotoScreen from '../screens/PhotoScreens';
+import PhotoScreen from '../screens/PhotoScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 

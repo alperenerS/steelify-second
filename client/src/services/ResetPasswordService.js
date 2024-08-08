@@ -2,13 +2,14 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from '../config';
 
-export const resetPassword = async (newPassword) => {
+export const resetPassword = async (newPassword, confirmPassword) => {
   try {
     const userId = await AsyncStorage.getItem('user_id');
+    const accessToken = await AsyncStorage.getItem('access_token');
 
     const response = await axios.put(
       `${API_BASE_URL}/user/updatePasswd/${userId}`,
-      { newPassword },
+      { newPassword, confirmPassword },
       {
         headers: {
           'Content-Type': 'application/json',

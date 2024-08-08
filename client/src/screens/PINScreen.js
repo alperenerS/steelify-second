@@ -13,7 +13,7 @@ const PINScreen = ({ navigation, route }) => {
     if (pin.length === 4) {
       try {
         await validatePIN(email, pin);
-        navigation.navigate('NextScreen'); // Doğruysa yönlendirilecek ekran
+        navigation.navigate('Şifre Sıfırla');
       } catch (error) {
         setError('PIN doğrulaması sırasında bir hata oluştu. Lütfen tekrar deneyin.');
       }

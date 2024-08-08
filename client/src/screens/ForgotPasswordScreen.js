@@ -20,7 +20,6 @@ const ForgotPasswordScreen = () => {
   return (
     <View style={forgotPasswordStyles.container}>
       <ForgotPasswordForm onSubmit={handleForgotPassword} />
-      {error && <Text style={forgotPasswordStyles.errorText}>{error}</Text>}
     </View>
   );
 };

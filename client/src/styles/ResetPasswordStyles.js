@@ -33,6 +33,14 @@ const resetPasswordStyles = StyleSheet.create({
     marginLeft: -35,
     marginRight: 10,
   },
+  successMessage: {
+    color: 'green',
+    marginTop: 20,
+  },
+  errorMessage: {
+    color: 'red',
+    marginTop: 20,
+  },
 });
 
 export default resetPasswordStyles;

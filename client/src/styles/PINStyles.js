@@ -40,6 +40,11 @@ const PINStyles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
   },
+  errorText: {
+    color: 'red',
+    marginTop: 10,
+    textAlign: 'center',
+  },
 });
 
 export default PINStyles;

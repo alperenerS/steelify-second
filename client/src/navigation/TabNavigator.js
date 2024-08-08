@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
-import HomeScreen from '../screens/HomeScreen';
+import HomepageScreen from '../screens/HomepageScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 import { AuthContext } from '../context/AuthContext';
 
@@ -41,6 +41,7 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
+      <Tab.Screen name="Anasayfa" component={HomepageScreen} />
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
       {loggedIn ? (
         <>

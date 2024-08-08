@@ -10,6 +10,7 @@ import PhotoScreen from '../screens/PhotoScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 import PINScreen from '../screens/PINScreen';
+import HomepageScreen from '../screens/HomepageScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Anasayfa" component={HomepageScreen} />
       <Stack.Screen name="Giriş Yap" component={LoginScreen} />
       <Stack.Screen name="Kayıt Ol" component={RegisterScreen} />
       <Stack.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />

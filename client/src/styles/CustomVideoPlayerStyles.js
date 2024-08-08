@@ -3,23 +3,22 @@ import { StyleSheet } from 'react-native';
 const customVideoPlayerStyles = StyleSheet.create({
   container: {
     position: 'relative',
-    width: '100%',
-    height: 150,
-    borderRadius: 8,
-    overflow: 'hidden',
   },
   video: {
-    width: '100%',
-    height: '100%',
+    width: 200,
+    height: 120,
+    borderRadius: 12,
   },
-  controlOverlay: {
+  playPauseButton: {
     position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -25 }, { translateY: -25 }],
+  },
+  fullscreenButton: {
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
   },
 });
 

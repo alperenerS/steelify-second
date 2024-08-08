@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
 
   const checkLoginStatus = async () => {
     const token = await AsyncStorage.getItem('access_token');
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ loggedIn, login, logout, checkLoginStatus }}>
+    <AuthContext.Provider value={{ loggedIn, login, logout, checkLoginStatus, email, setEmail }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import forgotPasswordStyles from '../styles/ForgotPasswordStyles';
+import { AuthContext } from '../context/AuthContext';
 
 const ForgotPasswordForm = ({ onSubmit }) => {
   const [email, setEmail] = useState('');
+  const { setEmail: setContextEmail } = useContext(AuthContext);
 
   const handleSubmit = () => {
+    setContextEmail(email);
     onSubmit(email);
   };
 

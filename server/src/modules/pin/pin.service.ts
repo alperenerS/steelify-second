@@ -32,26 +32,49 @@ export class PinService {
     if (!pinData) return false;
 
     const isExpired =
-      new Date().getTime() - new Date(pinData.createdAt).getTime() > 120000;
+      new Date().getTime() - new Date(pinData.updatedAt).getTime() > 120000;
 
     if (isExpired) {
-      await this.pin.destroy({ where: { mail, pin } });
+      //   await this.pin.destroy({ where: { mail, pin } });
       return false;
     }
 
     return true;
   }
 
-  async deleteExpiredPins(): Promise<void> {
-    const expirationTime = 120000; // 2 minutes
-    const expirationDate = new Date(Date.now() - expirationTime);
+  async updateNewPin(mail: string) {
+    const oldPinData = await this.pin.findOne({ where: { mail: mail } });
 
-    await this.pin.destroy({
-      where: {
-        createdAt: {
-          [Op.lt]: expirationDate,
-        },
-      },
+    const isExpired =
+      new Date().getTime() - new Date(oldPinData.updatedAt).getTime() > 120000;
+
+    const pin = otpGenerator.generate(4, {
+      digits: true,
+      lowerCaseAlphabets: false,
+      upperCaseAlphabets: false,
+      specialChars: false,
     });
+
+    if (isExpired) {
+      const updatedPin = await this.pin.update(
+        { pin: pin },
+        { where: { mail: mail } },
+      );
+      return updatedPin;
+    }
+    return;
   }
+
+  //   async deleteExpiredPins(): Promise<void> {
+  //     const expirationTime = 120000; // 2 minutes
+  //     const expirationDate = new Date(Date.now() - expirationTime);
+
+  //     await this.pin.destroy({
+  //       where: {
+  //         createdAt: {
+  //           [Op.lt]: expirationDate,
+  //         },
+  //       },
+  //     });
+  //   }
 }

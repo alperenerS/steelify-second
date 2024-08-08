@@ -4,6 +4,7 @@ import {
   HttpStatus,
   NotFoundException,
   Post,
+  Put,
   Req,
   Res,
 } from '@nestjs/common';
@@ -48,5 +49,15 @@ export class MailController {
       message: 'Mail Successfully Sent!',
       data: result,
     });
+  }
+
+  @Put('resPin')
+  async sendNewPin(@Req() req: Request, @Res() res: Response) {
+    const mail = req.body.mail;
+    const oldPin = await this.pinService.updateNewPin(mail);
+
+    return res
+      .status(HttpStatus.CREATED)
+      .json({ message: 'Pin Updated !', data: oldPin });
   }
 }

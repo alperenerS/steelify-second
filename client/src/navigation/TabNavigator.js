@@ -4,10 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CameraScreen from '../screens/CameraScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
 import HomeScreen from '../screens/HomeScreen';
-import ResetPasswordScreen from '../screens/ResetPasswordScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 import { AuthContext } from '../context/AuthContext';
 
@@ -33,10 +30,6 @@ const TabNavigator = () => {
             iconName = focused ? 'person' : 'person-outline';
           } else if (route.name === 'Giriş Yap') {
             iconName = focused ? 'log-in' : 'log-in-outline';
-          } else if (route.name === 'Kayıt Ol') {
-            iconName = focused ? 'person-add' : 'person-add-outline';
-          } else if (route.name === 'Şifre Sıfırla') {
-            iconName = focused ? 'key' : 'key-outline';
           } else if (route.name === 'Şifremi Unuttum') {
             iconName = focused ? 'help' : 'help-outline';
           } else if (route.name === 'Değerlendir') {
@@ -48,7 +41,6 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      {/* <Tab.Screen name="Anasayfa" component={HomeScreen} /> */}
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
       {loggedIn ? (
         <>

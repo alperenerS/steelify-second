@@ -10,7 +10,7 @@ const ProfileScreen = ({ navigation }) => {
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { loggedIn, checkLoginStatus } = useContext(AuthContext);
+  const { loggedIn } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -27,7 +27,7 @@ const ProfileScreen = ({ navigation }) => {
     if (loggedIn) {
       fetchUserInfo();
     } else {
-      navigation.navigate('Giriş Yap');
+      navigation.navigate('Fotoğraf Çek');
     }
   }, [loggedIn]);
 

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-const cardStyles = StyleSheet.create({
+const assesmentStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f0f0',
@@ -37,6 +37,12 @@ const cardStyles = StyleSheet.create({
   overlayLabelRight: {
     color: '#33cc33',
   },
+  noMoreCardsText: {
+    fontSize: 18,
+    color: 'black',
+    textAlign: 'center',
+    margin: 20,
+  },
 });
 
-export default cardStyles;
+export default assesmentStyles;

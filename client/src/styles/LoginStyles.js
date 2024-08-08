@@ -32,11 +32,19 @@ const loginStyles = StyleSheet.create({
     color: 'red',
     marginTop: 10,
   },
-  forgotPassword: {
+  linkContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginTop: -10,
     marginBottom: 20,
+  },
+  forgotPassword: {
     color: colors.primary,
     textAlign: 'right',
+  },
+  register: {
+    color: colors.primary,
+    textAlign: 'left',
   },
 });
 

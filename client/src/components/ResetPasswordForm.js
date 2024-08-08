@@ -27,10 +27,12 @@ const ResetPasswordForm = ({ onSubmit }) => {
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
           placeholderTextColor="#000"
+          color="#000" // Kullanıcının yazdığı yazıyı siyah yapar
         />
         <Ionicons
           name={showPassword ? "eye-off" : "eye"}
           size={24}
+          color="#000" // Icon rengini siyah yapar
           style={resetPasswordStyles.icon}
           onPress={() => setShowPassword(!showPassword)}
         />
@@ -43,10 +45,12 @@ const ResetPasswordForm = ({ onSubmit }) => {
           onChangeText={setConfirmPassword}
           secureTextEntry={!showConfirmPassword}
           placeholderTextColor="#000"
+          color="#000"
         />
         <Ionicons
           name={showConfirmPassword ? "eye-off" : "eye"}
           size={24}
+          color="#000"
           style={resetPasswordStyles.icon}
           onPress={() => setShowConfirmPassword(!showConfirmPassword)}
         />

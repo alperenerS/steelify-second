@@ -62,8 +62,12 @@ export class UserController {
     @Res() res: Response,
     @Req() req: Request,
   ) {
-    const newPassword = req.body.newPassword;
-    const newPasswd = await this.userService.resPassword(newPassword, id);
+    const { newPassword, confirmPassword } = req.body;
+    const newPasswd = await this.userService.resPassword(
+      newPassword,
+      confirmPassword,
+      id,
+    );
 
     return res
       .status(HttpStatus.CREATED)

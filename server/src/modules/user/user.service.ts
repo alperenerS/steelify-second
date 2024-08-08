@@ -88,7 +88,11 @@ export class UserService {
     return await this.userRepository.destroy({ where: { id: id } });
   }
 
-  async resPassword(newPassword: string, id: number) {
+  async resPassword(newPassword: string, confirmPassword: string, id: number) {
+    if (newPassword !== confirmPassword) {
+      throw new BadRequestException('Passwords does not match !');
+    }
+
     const hashedPassword = await bcrypt.hash(newPassword, 12);
 
     return await this.userRepository.update(

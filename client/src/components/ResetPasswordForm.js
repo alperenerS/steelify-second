@@ -11,7 +11,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
 
   const handleSubmit = () => {
     if (password === confirmPassword) {
-      onSubmit(password);
+      onSubmit(password, confirmPassword);
     } else {
       alert('Passwords do not match');
     }
@@ -27,12 +27,12 @@ const ResetPasswordForm = ({ onSubmit }) => {
           onChangeText={setPassword}
           secureTextEntry={!showPassword}
           placeholderTextColor="#000"
-          color="#000" // Kullanıcının yazdığı yazıyı siyah yapar
+          color="#000"
         />
         <Ionicons
           name={showPassword ? "eye-off" : "eye"}
           size={24}
-          color="#000" // Icon rengini siyah yapar
+          color="#000"
           style={resetPasswordStyles.icon}
           onPress={() => setShowPassword(!showPassword)}
         />
@@ -45,7 +45,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
           onChangeText={setConfirmPassword}
           secureTextEntry={!showConfirmPassword}
           placeholderTextColor="#000"
-          color="#000"
+          color="#000" 
         />
         <Ionicons
           name={showConfirmPassword ? "eye-off" : "eye"}

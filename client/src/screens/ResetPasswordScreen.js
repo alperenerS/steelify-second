@@ -8,9 +8,9 @@ const ResetPasswordScreen = ({ navigation }) => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
-  const handleResetPassword = async (newPassword) => {
+  const handleResetPassword = async (newPassword, confirmPassword) => {
     try {
-      await resetPassword(newPassword);
+      await resetPassword(newPassword, confirmPassword);
       setMessage('Şifre başarıyla yenilendi.');
       setError('');
       setTimeout(() => {

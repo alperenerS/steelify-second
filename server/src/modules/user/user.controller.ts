@@ -18,7 +18,6 @@ import { UserDto } from './dto/user.dto';
 import { UpdateUserDto } from './dto/updateUser.dto';
 
 @Controller('api/user')
-@UseGuards(JwtGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

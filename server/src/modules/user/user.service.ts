@@ -113,4 +113,11 @@ export class UserService {
     }
     return userId;
   }
+
+  async forgotPassword(password: string, mail: string) {
+    return await this.userRepository.update(
+      { password: password },
+      { where: { email: mail } },
+    );
+  }
 }

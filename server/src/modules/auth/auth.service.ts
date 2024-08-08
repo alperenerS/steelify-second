@@ -85,4 +85,18 @@ export class AuthService {
   async findUserExist(email: string): Promise<User> {
     return await this.userService.findByEmail(email);
   }
+
+  async forgotPassword(
+    newPassword: string,
+    confirmPassword: string,
+    mail: string,
+  ) {
+    if (newPassword !== confirmPassword) {
+      throw new BadRequestException('Passwords does not match !');
+    }
+
+    const newHashedPassword = await bcrypt.hash(newPassword, 12);
+
+    return await this.userService.forgotPassword(newHashedPassword, mail);
+  }
 }

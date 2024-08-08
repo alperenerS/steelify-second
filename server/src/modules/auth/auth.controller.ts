@@ -5,6 +5,7 @@ import {
   Get,
   HttpStatus,
   Post,
+  Put,
   Req,
   Res,
 } from '@nestjs/common';
@@ -25,7 +26,6 @@ export class AuthController {
     }
 
     const newUser = await this.authService.register(user);
-    
 
     return res
       .status(HttpStatus.CREATED)
@@ -41,5 +41,18 @@ export class AuthController {
       .json({ message: 'User Successfully Logged In !', data: response });
   }
 
+  @Put('forgotPassword')
+  async forgotPassword(@Req() req: Request, @Res() res: Response) {
+    const { newPassword, confirmPassword, mail } = req.body;
 
+    const newPasswd = await this.authService.forgotPassword(
+      newPassword,
+      confirmPassword,
+      mail,
+    );
+
+    return res
+      .status(HttpStatus.CREATED)
+      .json({ message: 'Password Successfully Updated !', data: newPasswd });
+  }
 }

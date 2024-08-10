@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native'; // Navigasyonu kullanmak için ekleniyor
 import allVideosStyles from '../styles/AllVideosStyles';
 import CustomVideoPlayer from './homepageComponents/CustomVideoPlayer';
 
@@ -29,14 +30,19 @@ const videos = [
 
 const AllVideos = () => {
   const [activeVideo, setActiveVideo] = useState(null);
-
+  const navigation = useNavigation();
   const handleVideoPress = (id) => {
     setActiveVideo(id);
   };
 
   return (
     <View style={allVideosStyles.container}>
-      <Text style={allVideosStyles.title}>Bütün Videoları</Text>
+      <View style={allVideosStyles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={allVideosStyles.title}>Bütün Videolar</Text>
+      </View>
       <FlatList
         data={videos}
         renderItem={({ item }) => (
@@ -45,9 +51,9 @@ const AllVideos = () => {
             <TouchableOpacity onPress={() => handleVideoPress(item.id)} style={allVideosStyles.videoContainer}>
               <CustomVideoPlayer
                 source={{ uri: item.videoUrl }}
-                width={'100%'} // AllVideos için genişlik
-                height={250} // AllVideos için yükseklik
-                paused={activeVideo !== item.id} // Sadece aktif video oynatılır
+                width={'100%'}
+                height={250}
+                paused={activeVideo !== item.id}
               />
             </TouchableOpacity>
           </View>

@@ -19,17 +19,17 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Tabs" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Anasayfa" component={HomepageScreen} />
-      <Stack.Screen name="Giriş Yap" component={LoginScreen} />
-      <Stack.Screen name="Kayıt Ol" component={RegisterScreen} />
-      <Stack.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} />
-      <Stack.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} />
-      <Stack.Screen name="Fotoğraf Çek" component={CameraScreen} />
-      <Stack.Screen name="Fotoğraf" component={PhotoScreen} />
-      <Stack.Screen name="Profil" component={ProfileScreen} />
-      <Stack.Screen name="Değerlendir" component={AssesmentScreen} />
-      <Stack.Screen name="PIN" component={PINScreen} />
-      <Stack.Screen name="Bütün Videolar" component={AllVideosScreen} />
+      <Stack.Screen name="Anasayfa" component={HomepageScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Giriş Yap" component={LoginScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Kayıt Ol" component={RegisterScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Şifre Sıfırla" component={ResetPasswordScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Şifremi Unuttum" component={ForgotPasswordScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Fotoğraf Çek" component={CameraScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Fotoğraf" component={PhotoScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Profil" component={ProfileScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Değerlendir" component={AssesmentScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="PIN" component={PINScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Bütün Videolar" component={AllVideosScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

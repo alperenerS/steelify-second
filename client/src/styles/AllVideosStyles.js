@@ -3,30 +3,32 @@ import { StyleSheet } from 'react-native';
 const allVideosStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 16,
+    backgroundColor: '#fff',
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#000', // Siyah renk
-    marginBottom: 16,
+    color: '#000',
+    marginLeft: 8,
   },
   videoItem: {
-    marginBottom: 24,
-  },
-  videoContainer: {
-    position: 'relative',
-    width: '100%',
-    height: 250,
-    borderRadius: 12,
-    overflow: 'hidden',
+    marginBottom: 16,
   },
   videoTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#000', // Siyah renk
+    color: '#000',
     marginBottom: 8,
+  },
+  videoContainer: {
+    borderRadius: 12,
+    overflow: 'hidden',
   },
 });
 

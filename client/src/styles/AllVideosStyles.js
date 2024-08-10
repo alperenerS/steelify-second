@@ -12,7 +12,7 @@ const allVideosStyles = StyleSheet.create({
     marginBottom: 16,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#000',
     marginLeft: 8,

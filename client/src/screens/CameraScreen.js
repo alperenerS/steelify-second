@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Image, Text, ScrollView } from 'react-native';
+import { View, Image, Text, ScrollView, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useIsFocused } from '@react-navigation/native';
 import Camera from '../components/Camera';
 import CameraStyles from '../styles/CameraStyles';
@@ -24,6 +25,12 @@ const CameraScreen = ({ navigation }) => {
 
   return (
     <ScrollView contentContainerStyle={CameraStyles.container}>
+      <View style={CameraStyles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={CameraStyles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={CameraStyles.headerTitle}>Fotoğraf Çek</Text>
+      </View>
       {!photoUri && (
         <View style={CameraStyles.instructionsContainer}>
           <Text style={CameraStyles.instructionsTitle}>Steelify Fotoğraf Çekim Rehberi</Text>

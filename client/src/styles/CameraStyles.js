@@ -28,6 +28,19 @@ const CameraStyles = StyleSheet.create({
     textAlign: 'left',
     color: '#000',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    zIndex: 1,
+    marginBottom: 20,
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
+    marginLeft: 8,
+  },
 });
 
 export default CameraStyles;

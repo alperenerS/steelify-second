@@ -42,7 +42,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen name="Anasayfa" component={HomepageScreen} />
-      <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} />
+      <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} options={{ headerShown: false }}/>
       {loggedIn ? (
         <>
           <Tab.Screen name="Değerlendir" component={AssesmentScreen} />

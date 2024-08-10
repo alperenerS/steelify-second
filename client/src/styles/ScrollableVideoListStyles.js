@@ -4,28 +4,42 @@ const scrollableVideoListStyles = StyleSheet.create({
   container: {
     marginBottom: 24,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
-    marginVertical: 16,
-    color: '#000',
+    color: '#000', // Siyah renk
+  },
+  moreButton: {
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    backgroundColor: '#FF6F00',
+    borderRadius: 4,
+  },
+  moreButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   videoItem: {
     marginRight: 16,
-    position: 'relative',
+    position: 'relative', // Play icon'un konumlandırılması için
   },
   videoContainer: {
     position: 'relative',
+    width: 200,
+    height: 120,
+    borderRadius: 12,
+    overflow: 'hidden',
   },
   videoImage: {
-    width: 200,
-    height: 120,
-    borderRadius: 12,
-  },
-  video: {
-    width: 200,
-    height: 120,
-    borderRadius: 12,
+    width: '100%',
+    height: '100%',
   },
   playIcon: {
     position: 'absolute',
@@ -37,7 +51,7 @@ const scrollableVideoListStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginTop: 8,
-    color: '#000',
+    color: '#000', // Siyah renk
   },
 });
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useNavigation } from '@react-navigation/native';
 import scrollableVideoListStyles from '../../styles/ScrollableVideoListStyles';
 import CustomVideoPlayer from './CustomVideoPlayer';
 
@@ -33,6 +34,7 @@ const videos = [
 
 const ScrollableVideoList = () => {
   const [activeVideo, setActiveVideo] = useState(null);
+  const navigation = useNavigation();
 
   const handleVideoPress = (id) => {
     setActiveVideo(id);
@@ -40,7 +42,15 @@ const ScrollableVideoList = () => {
 
   return (
     <View style={scrollableVideoListStyles.container}>
-      <Text style={scrollableVideoListStyles.title}>Kaynak Eğitim Videoları</Text>
+      <View style={scrollableVideoListStyles.header}>
+        <Text style={scrollableVideoListStyles.title}>Kaynak Eğitim Videoları</Text>
+        <TouchableOpacity
+          style={scrollableVideoListStyles.moreButton}
+          onPress={() => navigation.navigate('Bütün Videolar')}
+        >
+          <Text style={scrollableVideoListStyles.moreButtonText}>Daha Fazla..</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={videos}
         horizontal
@@ -49,6 +59,8 @@ const ScrollableVideoList = () => {
             {activeVideo === item.id ? (
               <CustomVideoPlayer
                 source={{ uri: item.videoUrl }}
+                width={200} // ScrollableVideoList için genişlik
+                height={120} // ScrollableVideoList için yükseklik
               />
             ) : (
               <TouchableOpacity onPress={() => handleVideoPress(item.id)} style={scrollableVideoListStyles.videoContainer}>

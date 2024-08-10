@@ -5,9 +5,8 @@ const customVideoPlayerStyles = StyleSheet.create({
     position: 'relative',
   },
   video: {
-    width: 200,
-    height: 120,
-    borderRadius: 12,
+    width: '100%',
+    height: '100%',
   },
   playPauseButton: {
     position: 'absolute',
@@ -17,7 +16,7 @@ const customVideoPlayerStyles = StyleSheet.create({
   },
   fullscreenButton: {
     position: 'absolute',
-    bottom: 10,
+    bottom: 30,
     right: 10,
   },
 });

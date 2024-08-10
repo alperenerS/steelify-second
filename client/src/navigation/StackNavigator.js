@@ -11,6 +11,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 import PINScreen from '../screens/PINScreen';
 import HomepageScreen from '../screens/HomepageScreen';
+import AllVideosScreen from '../screens/AllVideosScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,6 +29,7 @@ const StackNavigator = () => {
       <Stack.Screen name="Profil" component={ProfileScreen} />
       <Stack.Screen name="Değerlendir" component={AssesmentScreen} />
       <Stack.Screen name="PIN" component={PINScreen} />
+      <Stack.Screen name="Bütün Videolar" component={AllVideosScreen} />
     </Stack.Navigator>
   );
 };

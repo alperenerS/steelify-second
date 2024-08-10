@@ -7,8 +7,8 @@ const featuredVideoStyles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 16,
-    color: '#666',
+    marginVertical: 16,
+    color: '#666', // Siyah renk veya uygun olan
   },
   video: {
     width: '100%',

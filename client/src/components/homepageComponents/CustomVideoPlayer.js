@@ -4,23 +4,13 @@ import Video from 'react-native-video';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import customVideoPlayerStyles from '../../styles/CustomVideoPlayerStyles';
 
-const CustomVideoPlayer = ({ source }) => {
-  const [paused, setPaused] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
+const CustomVideoPlayer = ({ source, width, height, paused = true }) => {
+  const [isPaused, setIsPaused] = useState(paused);
   const [controlsVisible, setControlsVisible] = useState(true);
   const videoRef = useRef(null);
 
   const togglePlayPause = () => {
-    setPaused(!paused);
-  };
-
-  const handleFullscreen = () => {
-    if (fullscreen) {
-      videoRef.current.dismissFullscreenPlayer();
-    } else {
-      videoRef.current.presentFullscreenPlayer();
-    }
-    setFullscreen(!fullscreen);
+    setIsPaused(!isPaused);
   };
 
   const handleVideoPress = () => {
@@ -28,28 +18,26 @@ const CustomVideoPlayer = ({ source }) => {
   };
 
   return (
-    <View style={customVideoPlayerStyles.container}>
+    <View style={[customVideoPlayerStyles.container, { width, height }]}>
       <TouchableOpacity onPress={handleVideoPress} style={customVideoPlayerStyles.video}>
         <Video
           ref={videoRef}
           source={source}
           style={customVideoPlayerStyles.video}
-          paused={paused}
+          paused={isPaused}
           resizeMode="contain"
-          onFullscreenPlayerWillPresent={() => setFullscreen(true)}
-          onFullscreenPlayerWillDismiss={() => setFullscreen(false)}
           onLoad={() => setControlsVisible(true)}
         />
         {controlsVisible && (
           <>
             <TouchableOpacity onPress={togglePlayPause} style={customVideoPlayerStyles.playPauseButton}>
               <Ionicons
-                name={paused ? 'play' : 'pause'}
+                name={isPaused ? 'play' : 'pause'}
                 size={50}
                 color="#FFFFFF"
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleFullscreen} style={customVideoPlayerStyles.fullscreenButton}>
+            <TouchableOpacity onPress={() => { videoRef.current.presentFullscreenPlayer(); }} style={customVideoPlayerStyles.fullscreenButton}>
               <Ionicons
                 name="expand"
                 size={30}

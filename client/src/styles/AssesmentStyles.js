@@ -4,8 +4,25 @@ const assesmentStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f0f0f0',
-    justifyContent: 'center',
+  },
+  header: {
+    flexDirection: 'row',
     alignItems: 'center',
+    width: '100%',
+    paddingTop: 10, // Status bar ile arasında boşluk bırakmak için
+    paddingBottom: 10,
+    paddingHorizontal: 16,
+    backgroundColor: '#fff', // Header arka plan rengi
+    zIndex: 1,
+  },
+  backButton: {
+    paddingRight: 10,
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
+    marginLeft: 8,
   },
   card: {
     flex: 1,

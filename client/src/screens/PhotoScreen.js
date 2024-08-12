@@ -14,18 +14,17 @@ const PhotoScreen = ({ route, navigation }) => {
     try {
       await sendPhoto(photoUri, comment, error);
       Alert.alert('Kaydedildi', 'Hata ve yorum başarıyla kaydedildi.');
-      navigation.replace('Fotoğraf Çek'); // Replace the current screen with "Fotoğraf Çek"
+      navigation.replace('Fotoğraf Çek');
     } catch (error) {
       Alert.alert('Hata', 'Fotoğraf gönderilemedi. Lütfen tekrar deneyin.');
     }
   };
 
-  // Prevent navigating back to "Fotoğraf" screen
   useFocusEffect(
     React.useCallback(() => {
       const onBackPress = () => {
         if (navigation.isFocused()) {
-          navigation.replace('Fotoğraf Çek'); // Replace the current screen with "Fotoğraf Çek"
+          navigation.replace('Anasayfa');
           return true;
         }
         return false;

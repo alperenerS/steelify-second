@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, ActivityIndicator, Text } from 'react-native';
+import { View, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Profile from '../components/Profile';
 import globalStyles from '../styles/GlobalStyles';
 import ProfileStyles from '../styles/ProfileStyles';
@@ -27,7 +28,7 @@ const ProfileScreen = ({ navigation }) => {
     if (loggedIn) {
       fetchUserInfo();
     } else {
-      navigation.navigate('Fotoğraf Çek');
+      navigation.navigate('Anasayfa');
     }
   }, [loggedIn]);
 
@@ -49,6 +50,12 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={[globalStyles.container, ProfileStyles.screen]}>
+      <View style={ProfileStyles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={ProfileStyles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={ProfileStyles.headerTitle}>Profilim</Text>
+      </View>
       {userInfo && (
         <Profile
           name={userInfo.name}

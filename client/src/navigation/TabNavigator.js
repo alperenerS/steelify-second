@@ -41,12 +41,12 @@ const TabNavigator = () => {
         tabBarInactiveTintColor: 'gray',
       })}
     >
-      <Tab.Screen name="Anasayfa" component={HomepageScreen} />
+      <Tab.Screen name="Anasayfa" component={HomepageScreen} options={{ headerShown: false }}/>
       <Tab.Screen name="Fotoğraf Çek" component={CameraScreen} options={{ headerShown: false }}/>
       {loggedIn ? (
         <>
-          <Tab.Screen name="Değerlendir" component={AssesmentScreen} />
-          <Tab.Screen name="Profil" component={ProfileScreen} />
+          <Tab.Screen name="Değerlendir" component={AssesmentScreen} options={{ headerShown: false }}/>
+          <Tab.Screen name="Profil" component={ProfileScreen} options={{ headerShown: false }}/>
         </>
       ) : (
         <Tab.Screen name="Giriş Yap" component={LoginScreen} />

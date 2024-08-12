@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-deck-swiper';
 import Assesment from '../components/Assesment';
 import assesmentStyles from '../styles/AssesmentStyles';
 import * as Animatable from 'react-native-animatable';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { getRandomAssesments } from '../services/AssesmentService';
 
-const AssesmentScreen = () => {
+const AssesmentScreen = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [noMoreCards, setNoMoreCards] = useState(false);
@@ -76,6 +77,12 @@ const AssesmentScreen = () => {
 
   return (
     <View style={assesmentStyles.container}>
+      <View style={assesmentStyles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={assesmentStyles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#000" />
+        </TouchableOpacity>
+        <Text style={assesmentStyles.headerTitle}>Değerlendirme</Text>
+      </View>
       {noMoreCards ? (
         <Text style={assesmentStyles.noMoreCardsText}>
           Şimdilik Değerlendirilecek Bir Şey Yok. Daha Sonra Tekrar Deneyin.

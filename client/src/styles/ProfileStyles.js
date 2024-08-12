@@ -22,11 +22,17 @@ const ProfileStyles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 10,
-    paddingTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
   },
-  headerText: {
-    marginLeft: 10,
+  backButton: {
+    paddingRight: 10,
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: colors.text,
+    marginLeft: 8,
   },
   avatar: {
     backgroundColor: colors.secondary,

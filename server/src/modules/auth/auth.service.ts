@@ -1,8 +1,8 @@
 import {
   BadRequestException,
-  Inject,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { JwtService } from '@nestjs/jwt';
@@ -24,7 +24,7 @@ export class AuthService {
     );
     if (phoneNumberCheck) {
       throw new BadRequestException(
-        'There is an account with this phone number !',
+        'There is an account with this phone number!',
       );
     }
 
@@ -50,7 +50,7 @@ export class AuthService {
     );
 
     if (!comparePassword) {
-      throw new BadRequestException('Wrong Password !');
+      throw new BadRequestException('Wrong Password!');
     }
 
     const access_token = await this.signToken(
@@ -92,11 +92,20 @@ export class AuthService {
     mail: string,
   ) {
     if (newPassword !== confirmPassword) {
-      throw new BadRequestException('Passwords does not match !');
+      throw new BadRequestException('Passwords do not match!');
     }
 
     const newHashedPassword = await bcrypt.hash(newPassword, 12);
 
     return await this.userService.forgotPassword(newHashedPassword, mail);
+  }
+
+  async verifyToken(token: string): Promise<boolean> {
+    try {
+      const decoded = this.jwtService.verify(token);
+      return !!decoded;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }

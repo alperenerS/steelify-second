@@ -8,6 +8,7 @@ import {
   Put,
   Req,
   Res,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { AuthDto } from './dto/auth.dto';
 import { AuthService } from './auth.service';
@@ -54,5 +55,28 @@ export class AuthController {
     return res
       .status(HttpStatus.CREATED)
       .json({ message: 'Password Successfully Updated !', data: newPasswd });
+  }
+
+  @Get('verify-token')
+  async verifyToken(@Req() req: Request, @Res() res: Response) {
+    const token = req.headers.authorization?.split(' ')[1]; // Bearer token'ı al
+
+    if (!token) {
+      throw new UnauthorizedException('Token is missing');
+    }
+
+    try {
+      const isValid = await this.authService.verifyToken(token);
+
+      if (isValid) {
+        return res
+          .status(HttpStatus.OK)
+          .json({ message: 'Token is valid' });
+      } else {
+        throw new UnauthorizedException('Invalid token');
+      }
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
+    }
   }
 }

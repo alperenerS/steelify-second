@@ -7,15 +7,38 @@ import LoginScreen from '../screens/LoginScreen';
 import HomepageScreen from '../screens/HomepageScreen';
 import AssesmentScreen from '../screens/AssesmentScreen';
 import { AuthContext } from '../context/AuthContext';
+import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
-  const { loggedIn, checkLoginStatus } = useContext(AuthContext);
+  const { loggedIn, checkLoginStatus, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    checkLoginStatus();
-  }, []);
+    const verifyToken = async () => {
+      try {
+        const token = await AsyncStorage.getItem('access_token');
+        if (token) {
+          await axios.get(`${API_BASE_URL}/auth/verify-token`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+        } else {
+          logout();
+        }
+      } catch (error) {
+        // Eğer token geçersizse, kullanıcıyı çıkış yapmış olarak işaretleriz
+        if (error.response && error.response.status === 401) {
+          logout();
+        }
+      }
+    };
+
+    verifyToken();
+    checkLoginStatus(); // Giriş durumunu günceller
+  }, [loggedIn]);
 
   return (
     <Tab.Navigator

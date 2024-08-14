@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 const assesmentStyles = StyleSheet.create({
   container: {
@@ -30,28 +32,39 @@ const assesmentStyles = StyleSheet.create({
     borderColor: '#E8E8E8',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    padding: 16,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: width * 0.9,  // Ekran genişliğinin %90'ı kadar
+    height: width * 0.9, // Kare olacak şekilde yükseklik ile aynı ayarlandı
     borderRadius: 10,
   },
-  overlayLabel: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: [{ translateX: -50 }, { translateY: -50 }],
-    opacity: 0,
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginTop: 40,  // Fotoğraftan daha uzak olması için artırıldı
   },
-  overlayLabelText: {
-    fontSize: 100,
+  rejectButton: {
+    backgroundColor: '#ff4d4d',
+    width: 60,           // Butonun genişliği
+    height: 60,          // Butonun yüksekliği
+    borderRadius: 30,    // Tam yuvarlak olması için genişlik ve yüksekliğin yarısı kadar
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  overlayLabelLeft: {
-    color: '#ff4d4d',
+  acceptButton: {
+    backgroundColor: '#33cc33',
+    width: 60,           // Butonun genişliği
+    height: 60,          // Butonun yüksekliği
+    borderRadius: 30,    // Tam yuvarlak olması için genişlik ve yüksekliğin yarısı kadar
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  overlayLabelRight: {
-    color: '#33cc33',
+  buttonText: {
+    fontSize: 24,
+    color: '#fff',
+    textAlign: 'center',
   },
   noMoreCardsText: {
     fontSize: 18,

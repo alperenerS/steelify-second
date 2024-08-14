@@ -7,6 +7,23 @@ const ProfileStyles = StyleSheet.create({
     justifyContent: 'flex-start',
     backgroundColor: colors.background,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: colors.background,
+  },
+  backButton: {
+    position: 'absolute',
+    left: 20,
+  },
+  headerTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: colors.text,
+  },
   card: {
     marginVertical: 10,
     borderRadius: 20,

@@ -1,8 +1,17 @@
 import React from 'react';
 import { View, Image, TouchableOpacity, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import assesmentStyles from '../styles/AssesmentStyles';
 
-const Assesment = ({ uri, onReject, onAccept }) => {
+const Assesment = ({ uri, onReject }) => {
+  const navigation = useNavigation();
+
+  const handleAccept = () => {
+    navigation.navigate('Yorumlu Değerlendirme', {
+      photoUri: uri,
+    });
+  };
+
   return (
     <View style={assesmentStyles.card}>
       <Image style={assesmentStyles.image} source={{ uri }} />
@@ -10,7 +19,7 @@ const Assesment = ({ uri, onReject, onAccept }) => {
         <TouchableOpacity style={assesmentStyles.rejectButton} onPress={onReject}>
           <Text style={assesmentStyles.buttonText}>X</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={assesmentStyles.acceptButton} onPress={onAccept}>
+        <TouchableOpacity style={assesmentStyles.acceptButton} onPress={handleAccept}>
           <Text style={assesmentStyles.buttonText}>✔</Text>
         </TouchableOpacity>
       </View>

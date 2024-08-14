@@ -14,6 +14,7 @@ import HomepageScreen from '../screens/HomepageScreen';
 import AllVideosScreen from '../screens/AllVideosScreen';
 import BlogDetailScreen from '../screens/BlogDetailScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import AssesmentCommentScreen from '../screens/AssesmentCommentScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,8 @@ const StackNavigator = () => {
       <Stack.Screen name="Bütün Videolar" component={AllVideosScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Blog" component={BlogDetailScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Profili Düzenle" component={EditProfileScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Yorumlu Değerlendirme" component={AssesmentCommentScreen} options={{ headerShown: false }} />
+
     </Stack.Navigator>
   );
 };

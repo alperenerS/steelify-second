@@ -4,7 +4,7 @@ import ProfileStyles from '../styles/ProfileStyles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
 
-const Profile = ({ name, surname, email }) => {
+const Profile = ({ name, surname, email, phone }) => {
   const [selectedTab, setSelectedTab] = useState('comments');
   const { logout } = useContext(AuthContext);
   const navigation = useNavigation();
@@ -26,26 +26,31 @@ const Profile = ({ name, surname, email }) => {
       id: '1',
       date: 'June 5, 2024 | 12:00 pm',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image1.jpg',
     },
     {
       id: '2',
       date: 'June 6, 2024 | 1:00 pm',
       text: 'Curabitur vel sem sit amet nulla pharetra accumsan.',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg',
     },
     {
       id: '3',
       date: 'June 7, 2024 | 2:00 pm',
       text: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image3.jpg',
     },
     {
       id: '4',
       date: 'June 8, 2024 | 3:00 pm',
       text: 'Praesent vel elit vel erat fermentum suscipit.',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image4.jpg',
     },
     {
       id: '5',
       date: 'June 9, 2024 | 4:00 pm',
       text: 'Morbi gravida metus at nunc congue, at vehicula sem elementum.',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image5.jpg',
     },
   ];
 
@@ -81,10 +86,20 @@ const Profile = ({ name, surname, email }) => {
         <Text style={ProfileStyles.paragraph}>{`${name} ${surname}`}</Text>
         <Text style={ProfileStyles.paragraph}>{email}</Text>
         <View style={ProfileStyles.actions}>
-          <TouchableOpacity style={ProfileStyles.button} onPress={() => {}}>
+          <TouchableOpacity
+            style={ProfileStyles.button}
+            onPress={() =>
+              navigation.navigate('Profili Düzenle', {
+                name: name,
+                surname: surname,
+                phoneNumber: phone,
+              })
+            }>
             <Text style={ProfileStyles.buttonText}>Profili Düzenle</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={ProfileStyles.logoutButton} onPress={handleLogout}>
+          <TouchableOpacity
+            style={ProfileStyles.logoutButton}
+            onPress={handleLogout}>
             <Text style={ProfileStyles.buttonText}>Çıkış Yap</Text>
           </TouchableOpacity>
         </View>
@@ -92,15 +107,19 @@ const Profile = ({ name, surname, email }) => {
 
       <View style={ProfileStyles.tabContainer}>
         <TouchableOpacity
-          style={[ProfileStyles.tabButton, selectedTab === 'comments' && ProfileStyles.activeTabButton]}
-          onPress={() => setSelectedTab('comments')}
-        >
+          style={[
+            ProfileStyles.tabButton,
+            selectedTab === 'comments' && ProfileStyles.activeTabButton,
+          ]}
+          onPress={() => setSelectedTab('comments')}>
           <Text style={ProfileStyles.tabText}>Yorumlarım</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[ProfileStyles.tabButton, selectedTab === 'photos' && ProfileStyles.activeTabButton]}
-          onPress={() => setSelectedTab('photos')}
-        >
+          style={[
+            ProfileStyles.tabButton,
+            selectedTab === 'photos' && ProfileStyles.activeTabButton,
+          ]}
+          onPress={() => setSelectedTab('photos')}>
           <Text style={ProfileStyles.tabText}>Fotoğraflarım</Text>
         </TouchableOpacity>
       </View>
@@ -108,23 +127,24 @@ const Profile = ({ name, surname, email }) => {
       {selectedTab === 'comments' ? (
         <FlatList
           data={comments}
-          contentContainerStyle={{ paddingBottom: 16 }}
+          contentContainerStyle={{paddingBottom: 16}}
           renderItem={({ item }) => (
             <View style={ProfileStyles.commentCard}>
               <View style={{ flex: 1 }}>
                 <Text style={ProfileStyles.commentDate}>{item.date}</Text>
                 <Text style={ProfileStyles.commentText}>{item.text}</Text>
               </View>
+              <Image source={{ uri: item.image }} style={ProfileStyles.commentImage} />
             </View>
           )}
-          keyExtractor={(item) => item.id}
+          keyExtractor={item => item.id}
         />
       ) : (
         <FlatList
           data={photos}
           numColumns={3}
-          key={selectedTab} // numColumns değiştiğinde FlatList'in yeniden render edilmesini sağlar
-          keyExtractor={(item) => item.id}
+          key={selectedTab}
+          keyExtractor={item => item.id}
           renderItem={({ item }) => (
             <Image source={{ uri: item.uri }} style={ProfileStyles.photoGrid} />
           )}

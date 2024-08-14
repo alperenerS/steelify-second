@@ -13,6 +13,7 @@ import PINScreen from '../screens/PINScreen';
 import HomepageScreen from '../screens/HomepageScreen';
 import AllVideosScreen from '../screens/AllVideosScreen';
 import BlogDetailScreen from '../screens/BlogDetailScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +33,7 @@ const StackNavigator = () => {
       <Stack.Screen name="PIN" component={PINScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Bütün Videolar" component={AllVideosScreen} options={{ headerShown: false }} />
       <Stack.Screen name="Blog" component={BlogDetailScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Profili Düzenle" component={EditProfileScreen} options={{ headerShown: false }} />
     </Stack.Navigator>
   );
 };

@@ -96,39 +96,16 @@ const ProfileStyles = StyleSheet.create({
     flex: 1,
     marginRight: 10,
   },
+  commentImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+  },
   noContentText: {
     fontSize: 16,
     textAlign: 'center',
     color: colors.text,
     marginTop: 20,
-  },
-  iconWrapper: {
-    backgroundColor: '#fff',
-    borderRadius: 50,
-    padding: 10,
-    elevation: 3,
-  },
-  icon: {
-    color: colors.iconColor,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    paddingVertical: 20,
-    paddingHorizontal: 20,
-    backgroundColor: colors.background,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: colors.text,
-    textAlign: 'center',
-    flex: 1,
-  },
-  backButton: {
-    paddingHorizontal: 10,
   },
   photoGrid: {
     width: '30%',

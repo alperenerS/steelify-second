@@ -20,7 +20,8 @@ export const loginUser = async (email, password) => {
     await AsyncStorage.setItem('access_token', accessToken);
     await AsyncStorage.setItem('user_id', userId.toString());
     await AsyncStorage.setItem('name', name);
-
+    await AsyncStorage.setItem('email', email);
+    
     return response.data;
   } catch (error) {
     if (error.response) {

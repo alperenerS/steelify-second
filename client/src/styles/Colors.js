@@ -1,15 +1,16 @@
 const colors = {
   primary: '#FF6F00',
-  secondary: '#90CAF9',
-  background: '#F0F0F0',
+  secondary: '#FFF1E5',
+  background: '#F4F4F4',
   cardBackground: '#FFFFFF',
-  text: '#4F4F4F',
+  text: '#000000',
   buttonPrimaryBackground: '#FF6F00',
   buttonPrimaryText: '#FFFFFF',
-  buttonSecondaryBackground: '#90CAF9',
+  buttonSecondaryBackground: '#FF6F00',
   buttonSecondaryText: '#FFFFFF',
   inputBackground: '#FFFFFF',
   inputFocus: '#9E9E9E',
+  iconColor: '#FF6F00',
 };
 
 export default colors;

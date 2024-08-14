@@ -19,7 +19,7 @@ const ProfileScreen = ({ navigation }) => {
         const data = await getUserInfo();
         setUserInfo(data);
       } catch (err) {
-        setError('Kullanıcı bilgileri alınamadı. Lütfen tekrar deneyin.');
+        setError('Failed to load user info.');
       } finally {
         setLoading(false);
       }
@@ -55,6 +55,9 @@ const ProfileScreen = ({ navigation }) => {
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={ProfileStyles.headerTitle}>Profilim</Text>
+        {/* <TouchableOpacity style={ProfileStyles.iconWrapper}>
+          <Ionicons name="settings-outline" size={24} style={ProfileStyles.icon} />
+        </TouchableOpacity> */}
       </View>
       {userInfo && (
         <Profile

@@ -10,7 +10,7 @@ const sendPhoto = async (photoUri, comments, errors) => {
   formData.append('image_link', {
     uri: photoUri,
     type: 'image/jpeg',
-    name: `photo_${Date.now()}.jpg`,  // Fotoğraf ismini benzersiz yapıyoruz
+    name: `photo_${Date.now()}.jpg`,
   });
 
   try {

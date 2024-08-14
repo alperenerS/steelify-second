@@ -9,10 +9,9 @@ const assesmentStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    paddingTop: 10, // Status bar ile arasında boşluk bırakmak için
+    paddingTop: 10,
     paddingBottom: 10,
     paddingHorizontal: 16,
-    backgroundColor: '#fff', // Header arka plan rengi
     zIndex: 1,
   },
   backButton: {

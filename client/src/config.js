@@ -1,1 +1,2 @@
-export const API_BASE_URL = 'http://192.168.1.100:8082/api';
+export const API_BASE_URL = 'http://192.168.1.102:8082/api';
+//terminalden ifconfig komutu ile en0'da bulunan ip adresi buraya yazılır!

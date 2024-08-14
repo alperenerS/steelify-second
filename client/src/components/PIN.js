@@ -34,7 +34,7 @@ const PIN = ({ pin, setPin }) => {
           value={pin[index] || ''}
           onChangeText={(value) => handleChange(value, index)}
           onKeyPress={(e) => handleKeyPress(e, index)}
-          placeholderTextColor="black" // Renk için
+          placeholderTextColor="black"
         />
       ))}
     </View>

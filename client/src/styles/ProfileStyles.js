@@ -22,47 +22,18 @@ const ProfileStyles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 16,
+    width: '100%',
+    zIndex: 1,
+    marginBottom: 20,
   },
   backButton: {
-    paddingRight: 10,
+    paddingHorizontal: 0, // Padding kaldırıldı
   },
   headerTitle: {
     fontSize: 22,
     fontWeight: 'bold',
     color: colors.text,
-    marginLeft: 8,
-  },
-  avatar: {
-    backgroundColor: colors.secondary,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: colors.text,
-    marginBottom: 10,
-  },
-  paragraph: {
-    fontSize: 16,
-    color: colors.text,
-    marginBottom: 10,
-  },
-  actions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-  button: {
-    backgroundColor: colors.primary,
-  },
-  logoutButton: {
-    justifyContent: 'flex-start',
-    backgroundColor: colors.primary,
-  },
-  spacer: {
-    flex: 1,
+    marginLeft: 8, // Sadece sol tarafa boşluk verildi
   },
 });
 

@@ -10,7 +10,6 @@ export const getRandomAssesments = async () => {
         Authorization: `Bearer ${bearerToken}`,
       },
     });
-    console.log('Fetched random assessments: ', response.data.data); // Gelen veriyi yazdır
     return response.data.data;
   } catch (error) {
     console.error('Error fetching random assessments:', error);

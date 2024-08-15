@@ -7,7 +7,6 @@ const Assesment = ({ uri, imageId, onReject }) => {
   const navigation = useNavigation();
 
   const handleAccept = () => {
-    console.log("Accepted imageId: ", imageId);  // imageId'yi console'a yazdır
     navigation.navigate('Yorumlu Değerlendirme', {
       photoUri: uri,
       imageId: imageId,

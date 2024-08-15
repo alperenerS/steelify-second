@@ -15,9 +15,8 @@ const AssesmentScreen = ({ navigation }) => {
     setLoading(true);
     try {
       const result = await getRandomAssesments();
-      console.log("Fetched assessments data: ", result); // Gelen veriyi yazdır
       setData(result);
-      setCurrentIndex(0); // İlk fotoğrafa dön
+      setCurrentIndex(0);
     } catch (error) {
       console.error('Error fetching assessments:', error);
     } finally {
@@ -32,19 +31,16 @@ const AssesmentScreen = ({ navigation }) => {
   );
 
   const handleReject = () => {
-    console.log("Rejected imageId: ", data[currentIndex]?.id); // imageId'yi yazdır
     if (currentIndex < data.length - 1) {
-      setCurrentIndex(currentIndex + 1);  // Sonraki fotoğrafa geç
+      setCurrentIndex(currentIndex + 1);
     } else {
-      fetchData();  // Tüm fotoğraflar bitince yeni veri çek
+      fetchData();
     }
   };
 
   const handleAccept = () => {
     const selectedImageId = data[currentIndex]?.id;
     const photoUri = data[currentIndex]?.image_link;
-
-    console.log("Accepted imageId: ", selectedImageId);
 
     if (selectedImageId) {
       navigation.navigate('AssesmentCommentScreen', { photoUri, imageId: selectedImageId });

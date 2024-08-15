@@ -28,7 +28,6 @@ const AssesmentCommentScreen = ({route, navigation}) => {
   const handleSave = async () => {
     setIsLoading(true);
     try {
-      console.log('Saving with imageId:', imageId);
       await sendAssesmentComment(imageId, comment, error, photoUri, photoName);
       setPopupMessage('Başarıyla Kaydedildi!');
       setPopupVisible(true);

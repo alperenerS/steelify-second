@@ -18,7 +18,6 @@ export const checkAndRequestCameraPermission = async () => {
       console.log('İzin verilmedi, ancak istenebilir.');
       const requestResult = await request(permission);
       if (requestResult === RESULTS.GRANTED) {
-        console.log('İzin verildi.');
       } else {
         Alert.alert('Kamera İzni Gerekli', 'Uygulamayı kullanmak için kamera izni vermelisiniz.');
       }
@@ -28,7 +27,6 @@ export const checkAndRequestCameraPermission = async () => {
       Alert.alert('Dikkat', 'İzin sınırlı: bazı işlemler yapılabilir.');
       break;
     case RESULTS.GRANTED:
-      console.log('İzin verildi.');
       break;
     case RESULTS.BLOCKED:
       console.log('İzin reddedildi ve artık istenemez.');

@@ -4,11 +4,9 @@ import { API_BASE_URL } from '../config';
 
 export const sendAssesmentComment = async (imageId, comments, errors, reviewedImageLink, name, status = 'NOK') => {
   try {
-    // Access token'ı AsyncStorage'dan alıyoruz
     const accessToken = await AsyncStorage.getItem('access_token');
     if (!accessToken) throw new Error('Unauthorized');
 
-    // Form verisi oluşturuyoruz
     const formData = new FormData();
     formData.append('image_id', imageId);
     formData.append('comments', comments);

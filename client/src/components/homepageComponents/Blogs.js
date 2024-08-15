@@ -4,7 +4,7 @@ const blogs = [
       title: 'Avrupa Standartlarına Göre Kaynak Pozisyonları',
       description: 'Avrupa standartlarına göre kaynak pozisyonları ve sembollerinin önemi...',
       date: '31 Temmuz 2024',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_avrupa_kaynak_standartları.png',
+      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_blog_avrupa_kaynak_standartları.png',
       content: `
         Merhaba değerli ustalar! Bugün sizlere kaynakçılık dünyasında önemli bir yere sahip olan kaynak pozisyonları ve sembollerinden bahsedeceğiz. Bu konu, özellikle yurtdışında büyük firmalarda kaynak operatörü olarak çalışmayı düşünenler için hayati öneme sahip. Eğer Avrupa veya Amerika Birleşik Devletleri standartlarına göre üretim yapan bir işletmede çalışmayı planlıyorsanız, bu kaynak pozisyonlarını bilmeniz ve doğru şekilde uygulamanız gerekiyor.
   

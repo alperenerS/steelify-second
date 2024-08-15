@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import Assesment from '../components/Assesment';
 import assesmentStyles from '../styles/AssesmentStyles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,34 +11,45 @@ const AssesmentScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await getRandomAssesments();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching assessments:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const result = await getRandomAssesments();
+      console.log("Fetched assessments data: ", result); // Gelen veriyi yazdır
+      setData(result);
+      setCurrentIndex(0); // İlk fotoğrafa dön
+    } catch (error) {
+      console.error('Error fetching assessments:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData();
+    }, [])
+  );
 
   const handleReject = () => {
+    console.log("Rejected imageId: ", data[currentIndex]?.id); // imageId'yi yazdır
     if (currentIndex < data.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+      setCurrentIndex(currentIndex + 1);  // Sonraki fotoğrafa geç
     } else {
-      setCurrentIndex(0);
+      fetchData();  // Tüm fotoğraflar bitince yeni veri çek
     }
   };
 
   const handleAccept = () => {
-    if (currentIndex < data.length - 1) {
-      setCurrentIndex(currentIndex + 1);
+    const selectedImageId = data[currentIndex]?.id;
+    const photoUri = data[currentIndex]?.image_link;
+
+    console.log("Accepted imageId: ", selectedImageId);
+
+    if (selectedImageId) {
+      navigation.navigate('AssesmentCommentScreen', { photoUri, imageId: selectedImageId });
     } else {
-      setCurrentIndex(0);
+      console.error('Image ID bulunamadı.');
     }
   };
 
@@ -59,7 +71,8 @@ const AssesmentScreen = ({ navigation }) => {
       </View>
       {data.length > 0 ? (
         <Assesment
-          uri={data[currentIndex].image_link}
+          uri={data[currentIndex]?.image_link}
+          imageId={data[currentIndex]?.id}
           onReject={handleReject}
           onAccept={handleAccept}
         />

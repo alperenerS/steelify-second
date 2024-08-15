@@ -2,20 +2,25 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from '../config';
 
-export const sendAssesmentComment = async (imageId, comments, errors, reviewedImageLink, name) => {
+export const sendAssesmentComment = async (imageId, comments, errors, reviewedImageLink, name, status = 'NOK') => {
   try {
+    // Access token'ı AsyncStorage'dan alıyoruz
     const accessToken = await AsyncStorage.getItem('access_token');
     if (!accessToken) throw new Error('Unauthorized');
 
+    // Form verisi oluşturuyoruz
     const formData = new FormData();
     formData.append('image_id', imageId);
     formData.append('comments', comments);
     formData.append('errors', errors);
+    formData.append('status', status);
     formData.append('reviewed_image_link', {
       uri: reviewedImageLink,
       name: `${name}.jpg`,
       type: 'image/jpeg',
     });
+
+    console.log('Sending request with data:', formData);
 
     const response = await axios.post(`${API_BASE_URL}/assessment/send`, formData, {
       headers: {
@@ -24,8 +29,10 @@ export const sendAssesmentComment = async (imageId, comments, errors, reviewedIm
       },
     });
 
+    console.log('Response:', response.data);
     return response.data;
   } catch (error) {
+    console.error('Error during the request:', error);
     if (error.response) {
       console.error('Server responded with an error:', error.response.data);
       throw error.response.data;

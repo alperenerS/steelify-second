@@ -2,25 +2,7 @@ import React from 'react';
 import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import homepageStyles from '../../styles/HomepageStyles';
-
-const blogs = [
-  {
-    id: '1',
-    title: 'Eos omnis vitae in corrupti magni sed itaque incidunt',
-    description: 'Sit dolore beatae non consequatur voluptas ex dolor...',
-    date: 'July 31, 2024',
-    image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image1.jpg',
-    content: 'Full blog content for blog 1 goes here...'
-  },
-  {
-    id: '2',
-    title: 'Nam quis dolor ut consequuntur officia',
-    description: 'Sit dolore beatae non consequatur voluptas ex dolor...',
-    date: 'July 31, 2024',
-    image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg',
-    content: 'Full blog content for blog 2 goes here...'
-  },
-];
+import blogs from './Blogs';  // blogs.js dosyasını import ediyoruz
 
 const BlogList = () => {
   const navigation = useNavigation();

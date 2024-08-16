@@ -27,10 +27,9 @@ export class AssessmentService {
     return image.user_id;
   }
 
-//   async getRandomPhoto(): Promise<Assessment[]> {
-//     return await this.assessmentRepository.findAll({
-//       order: [this.sequelize.fn('RANDOM')],
-//       limit: 10,
-//     });
-//   }
+  async getUserComments(userId: number): Promise<Assessment[]> {
+    return await this.assessmentRepository.findAll({
+      where: { reviewer: userId },
+    });
+  }
 }

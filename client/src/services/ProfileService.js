@@ -65,6 +65,24 @@ export const getReviewedPhotos = async () => {
   }
 };
 
+// Kullanıcının yaptığı yorumları almak için yeni fonksiyon
+export const getUserComments = async () => {
+  try {
+    const accessToken = await AsyncStorage.getItem('access_token');
+    if (!accessToken) throw new Error('Unauthorized');
+
+    const response = await axios.get(`${API_BASE_URL}/assessment/myComments`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
 const handleError = (error) => {
   if (error.response) {
     console.error('Server responded with an error:', error.response.data);

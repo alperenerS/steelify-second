@@ -18,7 +18,6 @@ import { UserService } from '../user/user.service';
 import { AssessmentDto } from './dto/assessment.dto';
 import { JwtGuard } from '../auth/guard/jwt.guard';
 import { ReviewedPhotosService } from '../reviewed-photos/reviewed-photos.service';
-import { reviewedPhotosDto } from '../reviewed-photos/dto/reviewedPhotos.dto';
 
 @UseGuards(JwtGuard)
 @Controller('api/assessment')
@@ -67,21 +66,31 @@ export class AssessmentController {
       const reviewedImage =
         await this.assessmentService.createAssessment(reviewedImageDto);
 
-      const reviewedPhotosDto: reviewedPhotosDto = {
-        image_id: image_id,
-        reviewed_image_id: reviewedImage.id,
-        user_id: loggedUserId,
-        status: status,
-        reviewed_image_link: azureUrl,
-      };
-
-      await this.reviewedPhotosService.createReviewedPhotos(reviewedPhotosDto);
-
       return res
         .status(HttpStatus.CREATED)
         .json({ message: 'Successfully Created !', data: reviewedImage });
     } catch (error) {
       console.log(error);
+      throw new InternalServerErrorException(error);
+    }
+  }
+
+  @Get('myComments')
+  async getUserComments(@Req() req: Request, @Res() res: Response) {
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+      const loggedUserId = await this.userService.findUserWhoLoggedIn(token);
+
+      const userComments = await this.assessmentService.getUserComments(
+        loggedUserId,
+      );
+
+      return res.status(HttpStatus.OK).json({
+        message: 'User comments successfully fetched!',
+        data: userComments,
+      });
+    } catch (error) {
+      console.error(error);
       throw new InternalServerErrorException(error);
     }
   }

@@ -1,13 +1,33 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Image, ActivityIndicator } from 'react-native';
 import ProfileStyles from '../styles/ProfileStyles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
+import { getUserComments } from '../services/ProfileService';
 
 const Profile = ({ name, surname, email, phone, photos }) => {
   const [selectedTab, setSelectedTab] = useState('comments');
   const { logout } = useContext(AuthContext);
   const navigation = useNavigation();
+  const [comments, setComments] = useState([]);
+  const [loadingComments, setLoadingComments] = useState(true);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const fetchedComments = await getUserComments();
+        setComments(fetchedComments);
+      } catch (error) {
+        console.error('Error fetching user comments:', error);
+      } finally {
+        setLoadingComments(false);
+      }
+    };
+
+    if (selectedTab === 'comments') {
+      fetchComments();
+    }
+  }, [selectedTab]);
 
   const handleLogout = async () => {
     try {
@@ -21,20 +41,13 @@ const Profile = ({ name, surname, email, phone, photos }) => {
     }
   };
 
-  const comments = [
-    {
-      id: '1',
-      date: 'June 5, 2024 | 12:00 pm',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image1.jpg',
-    },
-    {
-      id: '2',
-      date: 'June 6, 2024 | 1:00 pm',
-      text: 'Curabitur vel sem sit amet nulla pharetra accumsan.',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg',
-    },
-  ];
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <View style={ProfileStyles.screen}>
@@ -84,20 +97,24 @@ const Profile = ({ name, surname, email, phone, photos }) => {
       </View>
 
       {selectedTab === 'comments' ? (
-        <FlatList
-          data={comments}
-          contentContainerStyle={{ paddingBottom: 16 }}
-          renderItem={({ item }) => (
-            <View style={ProfileStyles.commentCard}>
-              <View style={{ flex: 1 }}>
-                <Text style={ProfileStyles.commentDate}>{item.date}</Text>
-                <Text style={ProfileStyles.commentText}>{item.text}</Text>
+        loadingComments ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <FlatList
+            data={comments}
+            contentContainerStyle={{ paddingBottom: 16 }}
+            renderItem={({ item }) => (
+              <View style={ProfileStyles.commentCard}>
+                <View style={{ flex: 1 }}>
+                  <Text style={ProfileStyles.commentDate}>{formatDate(item.createdAt)}</Text>
+                  <Text style={ProfileStyles.commentText}>{item.comments}</Text>
+                </View>
+                <Image source={{ uri: item.reviewed_image_link }} style={ProfileStyles.commentImage} />
               </View>
-              <Image source={{ uri: item.image }} style={ProfileStyles.commentImage} />
-            </View>
-          )}
-          keyExtractor={item => item.id}
-        />
+            )}
+            keyExtractor={item => item.id.toString()}
+          />
+        )
       ) : (
         <FlatList
           data={photos}

@@ -12,7 +12,7 @@ const AssesmentCommentStyles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',  // Back button ve title arasındaki dengeyi sağlar
+    justifyContent: 'space-between',
     width: '100%',
     paddingTop: 10,
     paddingBottom: 10,
@@ -24,8 +24,8 @@ const AssesmentCommentStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     textAlign: 'center',
-    flex: 1,  // Header başlığını ortalamak için flex kullanıyoruz
-    marginLeft: -24,  // Back button'ın varlığını hesaba katarak başlığı ortalamak için kullanılır
+    flex: 1,
+    marginLeft: -24,
   },
   preview: {
     width: width * 0.9,

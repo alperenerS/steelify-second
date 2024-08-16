@@ -4,7 +4,7 @@ import ProfileStyles from '../styles/ProfileStyles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
 
-const Profile = ({ name, surname, email, phone }) => {
+const Profile = ({ name, surname, email, phone, photos }) => {
   const [selectedTab, setSelectedTab] = useState('comments');
   const { logout } = useContext(AuthContext);
   const navigation = useNavigation();
@@ -33,47 +33,6 @@ const Profile = ({ name, surname, email, phone }) => {
       date: 'June 6, 2024 | 1:00 pm',
       text: 'Curabitur vel sem sit amet nulla pharetra accumsan.',
       image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg',
-    },
-    {
-      id: '3',
-      date: 'June 7, 2024 | 2:00 pm',
-      text: 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image3.jpg',
-    },
-    {
-      id: '4',
-      date: 'June 8, 2024 | 3:00 pm',
-      text: 'Praesent vel elit vel erat fermentum suscipit.',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image4.jpg',
-    },
-    {
-      id: '5',
-      date: 'June 9, 2024 | 4:00 pm',
-      text: 'Morbi gravida metus at nunc congue, at vehicula sem elementum.',
-      image: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image5.jpg',
-    },
-  ];
-
-  const photos = [
-    {
-      id: '1',
-      uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image1.jpg',
-    },
-    {
-      id: '2',
-      uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image2.jpg',
-    },
-    {
-      id: '3',
-      uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image3.jpg',
-    },
-    {
-      id: '4',
-      uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image4.jpg',
-    },
-    {
-      id: '5',
-      uri: 'https://yenastorage.blob.core.windows.net/steelify/steelify_sample_image5.jpg',
     },
   ];
 
@@ -127,7 +86,7 @@ const Profile = ({ name, surname, email, phone }) => {
       {selectedTab === 'comments' ? (
         <FlatList
           data={comments}
-          contentContainerStyle={{paddingBottom: 16}}
+          contentContainerStyle={{ paddingBottom: 16 }}
           renderItem={({ item }) => (
             <View style={ProfileStyles.commentCard}>
               <View style={{ flex: 1 }}>
@@ -144,9 +103,9 @@ const Profile = ({ name, surname, email, phone }) => {
           data={photos}
           numColumns={3}
           key={selectedTab}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Image source={{ uri: item.uri }} style={ProfileStyles.photoGrid} />
+            <Image source={{ uri: item.reviewed_image_link }} style={ProfileStyles.photoGrid} />
           )}
           contentContainerStyle={{ paddingBottom: 16 }}
         />

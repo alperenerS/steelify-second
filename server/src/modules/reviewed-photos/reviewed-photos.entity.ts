@@ -20,12 +20,14 @@ export class ReviewedPhotos extends Model<ReviewedPhotos> {
   @ForeignKey(() => User)
   @Column({ type: DataType.INTEGER, allowNull: false })
   user_id: number;
+
   @BelongsTo(() => User)
   user: User;
 
   @ForeignKey(() => Assessment)
   @Column({ type: DataType.INTEGER, allowNull: false })
   reviewed_image_id: number;
+
   @BelongsTo(() => Assessment)
   reviewedImage: Assessment;
 
@@ -35,6 +37,7 @@ export class ReviewedPhotos extends Model<ReviewedPhotos> {
     allowNull: false,
   })
   image_id: number;
+
   @BelongsTo(() => Photos)
   image: Photos;
 
@@ -43,4 +46,10 @@ export class ReviewedPhotos extends Model<ReviewedPhotos> {
     allowNull: false,
   })
   status: StatusEnum;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  reviewed_image_link: string;
 }

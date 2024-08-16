@@ -72,6 +72,7 @@ export class AssessmentController {
         reviewed_image_id: reviewedImage.id,
         user_id: loggedUserId,
         status: status,
+        reviewed_image_link: azureUrl,
       };
 
       await this.reviewedPhotosService.createReviewedPhotos(reviewedPhotosDto);
@@ -84,13 +85,4 @@ export class AssessmentController {
       throw new InternalServerErrorException(error);
     }
   }
-
-//   @Get('random')
-//   async getRandomPhoto(@Res() res: Response) {
-//     const randomPhotos = await this.assessmentService.getRandomPhoto();
-
-//     return res
-//       .status(HttpStatus.OK)
-//       .json({ message: 'Successfully Fetched !', data: randomPhotos });
-//   }
 }

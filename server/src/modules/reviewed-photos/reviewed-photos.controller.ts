@@ -29,7 +29,7 @@ export class ReviewedPhotosController {
       await this.reviewedPhotosService.getReviewedPhotos(loggedUserId);
 
     return res.status(HttpStatus.OK).json({
-      message: 'ReviewedPHotos Successfully Fetched !',
+      message: 'ReviewedPhotos Successfully Fetched!',
       data: myReviewedPhotos,
     });
   }
@@ -39,7 +39,7 @@ export class ReviewedPhotosController {
     const image_id = req.body.image_id;
 
     if (!image_id) {
-      throw new BadRequestException('ImageId Required !');
+      throw new BadRequestException('ImageId Required!');
     }
 
     const comparedPhotos =
@@ -47,7 +47,7 @@ export class ReviewedPhotosController {
 
     return res
       .status(HttpStatus.OK)
-      .json({ message: 'Successfully Fetched !', data: comparedPhotos });
+      .json({ message: 'Successfully Fetched!', data: comparedPhotos });
   }
 
   @Get('comparedNokPhotos')
@@ -55,7 +55,7 @@ export class ReviewedPhotosController {
     const image_id = req.body.image_id;
 
     if (!image_id) {
-      throw new BadRequestException('ImageId Required !');
+      throw new BadRequestException('ImageId Required!');
     }
 
     const comparedPhotos =
@@ -63,6 +63,6 @@ export class ReviewedPhotosController {
 
     return res
       .status(HttpStatus.OK)
-      .json({ message: 'Successfully Fetched !', data: comparedPhotos });
+      .json({ message: 'Successfully Fetched!', data: comparedPhotos });
   }
 }

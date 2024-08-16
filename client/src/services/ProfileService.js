@@ -2,15 +2,10 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_BASE_URL } from '../config';
 
-// Kullanıcı bilgilerini GET ile almak için mevcut fonksiyon
 export const getUserInfo = async () => {
   try {
     const accessToken = await AsyncStorage.getItem('access_token');
     const userId = await AsyncStorage.getItem('user_id');
-
-    // Loglama: Token ve userId değerlerini kontrol et
-    console.log('Access Token:', accessToken);
-    console.log('User ID:', userId);
 
     if (!accessToken || !userId) throw new Error('Unauthorized');
 
@@ -30,14 +25,7 @@ export const getUserInfo = async () => {
 export const updateUserInfo = async (name, surname, phoneNumber) => {
   try {
     const accessToken = await AsyncStorage.getItem('access_token');
-    const email = await AsyncStorage.getItem('email'); // E-posta değeri de API'ye gönderilmek üzere alınır.
-
-    // Loglama: Token ve email değerlerini kontrol et
-    console.log('Access Token:', accessToken);
-    console.log('Email:', email);
-    console.log('Name:', name);
-    console.log('Surname:', surname);
-    console.log('Phone Number:', phoneNumber);
+    const email = await AsyncStorage.getItem('email');
 
     if (!accessToken || !email) throw new Error('Unauthorized');
 
@@ -59,7 +47,24 @@ export const updateUserInfo = async (name, surname, phoneNumber) => {
   }
 };
 
-// Hata işleme fonksiyonu
+// Kullanıcının review ettiği fotoğrafları almak için yeni fonksiyon
+export const getReviewedPhotos = async () => {
+  try {
+    const accessToken = await AsyncStorage.getItem('access_token');
+    if (!accessToken) throw new Error('Unauthorized');
+
+    const response = await axios.get(`${API_BASE_URL}/reviewed-photos/myReviewedPhotos`, {
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+    return response.data.data;
+  } catch (error) {
+    handleError(error);
+  }
+};
+
 const handleError = (error) => {
   if (error.response) {
     console.error('Server responded with an error:', error.response.data);

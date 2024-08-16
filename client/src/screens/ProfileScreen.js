@@ -5,20 +5,23 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import Profile from '../components/Profile';
 import globalStyles from '../styles/GlobalStyles';
 import ProfileStyles from '../styles/ProfileStyles';
-import { getUserInfo } from '../services/ProfileService';
+import { getUserInfo, getReviewedPhotos } from '../services/ProfileService'; // Yeni import
 import { AuthContext } from '../context/AuthContext';
 
 const ProfileScreen = () => {
   const [userInfo, setUserInfo] = useState(null);
+  const [reviewedPhotos, setReviewedPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const { loggedIn } = useContext(AuthContext);
-  const navigation = useNavigation();  // useNavigation kancasını kullanarak navigation nesnesini alıyoruz
+  const navigation = useNavigation();
 
   const fetchUserInfo = async () => {
     try {
       const data = await getUserInfo();
+      const photos = await getReviewedPhotos();
       setUserInfo(data);
+      setReviewedPhotos(photos);
     } catch (err) {
       setError('Failed to load user info.');
     } finally {
@@ -65,9 +68,6 @@ const ProfileScreen = () => {
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={ProfileStyles.headerTitle}>Profilim</Text>
-        {/* <TouchableOpacity style={ProfileStyles.iconWrapper}>
-          <Ionicons name="settings-outline" size={24} style={ProfileStyles.icon} />
-        </TouchableOpacity> */}
       </View>
       {userInfo && (
         <Profile
@@ -75,6 +75,7 @@ const ProfileScreen = () => {
           surname={userInfo.surname}
           email={userInfo.email}
           phone={userInfo.phoneNumber}
+          photos={reviewedPhotos}
         />
       )}
     </View>

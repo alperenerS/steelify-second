@@ -43,14 +43,15 @@ export class AssessmentController {
           .status(HttpStatus.BAD_REQUEST)
           .json({ message: 'No files uploaded' });
       }
+      const token = req.headers.authorization.split(' ')[1];
+      const loggedUserId = await this.userService.findUserWhoLoggedIn(token);
 
       const azureUrl = await uploadFile(
         reviewed_image_link.buffer,
-        `reviewedImage/${reviewed_image_link.originalname}`,
+        `reviewedImage/${loggedUserId}/${reviewed_image_link.originalname}`,
       );
 
-      const token = req.headers.authorization.split(' ')[1];
-      const loggedUserId = await this.userService.findUserWhoLoggedIn(token);
+
       const photographer =
         await this.assessmentService.getPhotographerId(image_id);
 

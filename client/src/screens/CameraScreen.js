@@ -33,7 +33,7 @@ const CameraScreen = ({ navigation }) => {
       </View>
       {!photoUri && (
         <View style={CameraStyles.instructionsContainer}>
-          <Text style={CameraStyles.instructionsTitle}>Steelify Fotoğraf Çekim Rehberi</Text>
+          <Text style={CameraStyles.instructionsTitle}>Visual Inspection Fotoğraf Çekim Rehberi</Text>
           <Text style={CameraStyles.instructionsText}>1. Fotoğrafı aydınlık bir ortamda çekin. Yetersiz ışık, detayların kaybolmasına neden olabilir.</Text>
           <Text style={CameraStyles.instructionsText}>2. Kamerayı sabit tutarak net bir görüntü elde edin. Mümkünse tripod kullanın.</Text>
           <Text style={CameraStyles.instructionsText}>3. Çekim sırasında doğru açıyı yakalayın. Ürünün tüm detaylarını gösterecek şekilde pozisyon alın.</Text>

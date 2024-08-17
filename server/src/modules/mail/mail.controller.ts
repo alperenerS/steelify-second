@@ -36,7 +36,7 @@ export class MailController {
     const pin = await this.pinService.generatePin(emailDto.to);
 
     const dto: PinEmailDto = {
-      from: { name: 'Steelify', address: 'info@steelify.com' },
+      from: { name: 'YENA DEMİR ÇELİK', address: 'info@steelify.com' },
       to: emailDto.to,
       subject: emailDto.subject,
       html: `<p>Sayın kullanıcı,</p><p>PIN kodunuz: <strong>${pin.pin}</strong></p><p>Lütfen bu kodu kullanarak şifrenizi sıfırlayın. Kod 2 dakika geçerlidir.</p>`,

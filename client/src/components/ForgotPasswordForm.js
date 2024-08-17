@@ -14,7 +14,7 @@ const ForgotPasswordForm = ({ onSubmit }) => {
 
   return (
     <View style={forgotPasswordStyles.formContainer}>
-      <Text style={forgotPasswordStyles.title}>Steelify Hesabını Bul</Text>
+      <Text style={forgotPasswordStyles.title}>Visual Inspection Hesabını Bul</Text>
       <Text style={forgotPasswordStyles.paragraph}>
         Şifreni değiştirmek için hesabınla ilişkilendirilmiş e-posta adresini gir.
       </Text>

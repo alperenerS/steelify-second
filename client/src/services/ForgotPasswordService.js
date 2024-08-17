@@ -5,7 +5,7 @@ export const sendResetPasswordEmail = async (email) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/mail/resPasswdPin`, {
       to: email,
-      subject: 'Steelify Hesabın için Şifre Sıfırlama İsteği',
+      subject: 'Visual Inspection Hesabın için Şifre Sıfırlama İsteği',
     });
     return response.data;
   } catch (error) {

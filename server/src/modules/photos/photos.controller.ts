@@ -42,14 +42,13 @@ export class PhotosController {
           .status(HttpStatus.BAD_REQUEST)
           .json({ message: 'No files uploaded' });
       }
+      const token = req.headers.authorization.split(' ')[1];
+      const loggedUserId = await this.userService.findUserWhoLoggedIn(token);
 
       const azureUrl = await uploadFile(
         image_link.buffer,
-        `Photos/${image_link.originalname}`,
+        `Photos/${loggedUserId}/${image_link.originalname}`,
       );
-
-      const token = req.headers.authorization.split(' ')[1];
-      const loggedUserId = await this.userService.findUserWhoLoggedIn(token);
 
       const photosDto: PHotosDto = {
         comments: comments,

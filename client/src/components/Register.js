@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text } from 'react-native';
-import { TextInput, Button, Card, Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
+import React, {useState} from 'react';
+import {View, Text} from 'react-native';
+import {
+  TextInput,
+  Button,
+  Card,
+  Provider as PaperProvider,
+  DefaultTheme,
+} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import registerStyles from '../styles/RegisterStyles';
 import colors from '../styles/Colors';
@@ -13,7 +19,7 @@ const theme = {
   },
 };
 
-const Register = ({ onRegister }) => {
+const Register = ({onRegister}) => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [email, setEmail] = useState('');
@@ -74,7 +80,19 @@ const Register = ({ onRegister }) => {
               value={password}
               onChangeText={setPassword}
               secureTextEntry={!showPassword}
-              right={<TextInput.Icon icon={() => <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} onPress={() => setShowPassword(!showPassword)} />} />}
+              right={
+                <TextInput.Icon
+                  icon={() => (
+                    <Ionicons
+                      name={showPassword ? 'eye-off' : 'eye'}
+                      size={20}
+                      color="#000"
+                      style={{position: 'relative', top: 10}}
+                      onPress={() => setShowPassword(!showPassword)}
+                    />
+                  )}
+                />
+              }
               style={registerStyles.input}
             />
             <TextInput
@@ -82,9 +100,22 @@ const Register = ({ onRegister }) => {
               value={confirmPassword}
               onChangeText={setConfirmPassword}
               secureTextEntry={!showPassword}
-              right={<TextInput.Icon icon={() => <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} onPress={() => setShowPassword(!showPassword)} />} />}
+              right={
+                <TextInput.Icon
+                  icon={() => (
+                    <Ionicons
+                      name={showPassword ? 'eye-off' : 'eye'}
+                      size={20}
+                      color="#000"
+                      style={{position: 'relative', top: 10}}
+                      onPress={() => setShowPassword(!showPassword)}
+                    />
+                  )}
+                />
+              }
               style={registerStyles.input}
             />
+
             <TextInput
               label="Telefon Numarası"
               value={phone}
@@ -95,7 +126,10 @@ const Register = ({ onRegister }) => {
             {error ? <Text style={registerStyles.error}>{error}</Text> : null}
           </Card.Content>
           <Card.Actions>
-            <Button mode="contained" onPress={handleRegister} style={registerStyles.button}>
+            <Button
+              mode="contained"
+              onPress={handleRegister}
+              style={registerStyles.button}>
               Kayıt Ol
             </Button>
           </Card.Actions>

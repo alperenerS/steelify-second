@@ -1,4 +1,4 @@
-package com.steelifysecond
+package com.visualInspection
 
 import android.app.Application
 import com.facebook.react.PackageList

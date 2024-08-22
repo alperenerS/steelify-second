@@ -9,9 +9,10 @@ const PhotoInputs = ({ error, setError, comment, setComment }) => {
         <Text style={PhotoScreenStyles.inputLabel}>Hata</Text>
         <TextInput
           style={PhotoScreenStyles.input}
-          placeholder="Hata"
+          placeholder="Fotoğrafta gördüğünüz hataları yazın..."
+          placeholderTextColor="#000000"
           multiline
-          numberOfLines={2}
+          numberOfLines={4}
           value={error}
           onChangeText={setError}
         />
@@ -20,9 +21,10 @@ const PhotoInputs = ({ error, setError, comment, setComment }) => {
         <Text style={PhotoScreenStyles.inputLabel}>Yorum</Text>
         <TextInput
           style={PhotoScreenStyles.input}
-          placeholder="Yorum"
+          placeholder="Fotoğrafla ilgili yorumunuzu yazın..."
+          placeholderTextColor="#000000"
           multiline
-          numberOfLines={2}
+          numberOfLines={4}
           value={comment}
           onChangeText={setComment}
         />

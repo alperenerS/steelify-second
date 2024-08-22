@@ -1,23 +1,39 @@
 import React, { useState } from 'react';
-import { View, Image, ScrollView, Button, Alert, BackHandler } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, BackHandler, Text } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import PhotoInputs from '../components/PhotoInputs';
 import PhotoScreenStyles from '../styles/PhotoScreenStyles';
 import sendPhoto from '../services/PhotoSendService';
+import CustomPopup from '../components/CustomPopup'; 
+import LoadingPopup from '../components/LoadingPopup';
 
 const PhotoScreen = ({ route, navigation }) => {
   const { photoUri } = route.params;
   const [error, setError] = useState('');
   const [comment, setComment] = useState('');
+  const [isPopupVisible, setPopupVisible] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSave = async () => {
+    setIsLoading(true);
     try {
       await sendPhoto(photoUri, comment, error);
-      Alert.alert('Kaydedildi', 'Hata ve yorum başarıyla kaydedildi.');
-      navigation.replace('Fotoğraf Çek');
+      setPopupMessage('Başarıyla Kaydedildi!');
+      setPopupVisible(true);
     } catch (error) {
-      Alert.alert('Hata', 'Fotoğraf gönderilemedi. Lütfen tekrar deneyin.');
+      console.error('Error in handleSave:', error);
+      setPopupMessage('Fotoğraf gönderilemedi. Lütfen tekrar deneyin.');
+      setPopupVisible(true);
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const handleConfirm = () => {
+    setPopupVisible(false);
+    navigation.replace('Fotoğraf Çek');
   };
 
   useFocusEffect(
@@ -32,12 +48,21 @@ const PhotoScreen = ({ route, navigation }) => {
 
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, [navigation])
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [navigation]),
   );
 
   return (
     <ScrollView contentContainerStyle={PhotoScreenStyles.container}>
+      <View style={PhotoScreenStyles.header}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={PhotoScreenStyles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={PhotoScreenStyles.headerTitle}>Fotoğraf</Text>
+      </View>
       <Image source={{ uri: photoUri }} style={PhotoScreenStyles.preview} />
       <PhotoInputs
         error={error}
@@ -46,8 +71,20 @@ const PhotoScreen = ({ route, navigation }) => {
         setComment={setComment}
       />
       <View style={PhotoScreenStyles.buttonContainer}>
-        <Button title="Kaydet" onPress={handleSave} />
+        <TouchableOpacity
+          style={PhotoScreenStyles.button}
+          onPress={handleSave}>
+          <Text style={PhotoScreenStyles.buttonText}>Kaydet</Text>
+        </TouchableOpacity>
       </View>
+
+      <CustomPopup
+        visible={isPopupVisible}
+        message={popupMessage}
+        onConfirm={handleConfirm}
+        onClose={() => setPopupVisible(false)}
+      />
+      <LoadingPopup visible={isLoading} />
     </ScrollView>
   );
 };

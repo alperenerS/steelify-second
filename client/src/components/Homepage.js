@@ -31,7 +31,7 @@ const Homepage = () => {
         </View>
       </View>
       <FeaturedVideo />
-      <ScrollableVideoList />
+      {/* <ScrollableVideoList /> */}
     </>
   );
 

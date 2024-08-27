@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Profile from '../components/Profile';
 import globalStyles from '../styles/GlobalStyles';
 import ProfileStyles from '../styles/ProfileStyles';
-import { getUserInfo, getReviewedPhotos } from '../services/ProfileService'; // Yeni import
+import { getUserInfo, getReviewedPhotos } from '../services/ProfileService';
 import { AuthContext } from '../context/AuthContext';
 
 const ProfileScreen = () => {
@@ -37,14 +37,6 @@ const ProfileScreen = () => {
     }
   }, [loggedIn]);
 
-  useFocusEffect(
-    React.useCallback(() => {
-      if (loggedIn) {
-        fetchUserInfo();
-      }
-    }, [loggedIn])
-  );
-
   if (loading) {
     return (
       <View style={[globalStyles.container, ProfileStyles.screen]}>
@@ -64,7 +56,7 @@ const ProfileScreen = () => {
   return (
     <View style={[globalStyles.container, ProfileStyles.screen]}>
       <View style={ProfileStyles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={ProfileStyles.backButton}>
+        <TouchableOpacity onPress={() => navigation.navigate('Anasayfa')} style={ProfileStyles.backButton}>
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={ProfileStyles.headerTitle}>Profilim</Text>

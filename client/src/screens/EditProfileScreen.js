@@ -14,14 +14,20 @@ const EditProfileScreen = ({ route }) => {
   const handleSave = async () => {
     try {
       await updateUserInfo(newName, newSurname, newPhoneNumber);
-      navigation.navigate('Profil');
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Profil' }],
+      });
     } catch (error) {
       console.error('Error updating user info:', error);
     }
   };
 
   const handleCancel = () => {
-    navigation.navigate('Profil');
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'Profil' }],
+    });
   };
 
   return (

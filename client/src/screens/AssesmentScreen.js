@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, ActivityIndicator, TouchableOpacity, BackHandler } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import Assesment from '../components/Assesment';
 import assesmentStyles from '../styles/AssesmentStyles';
@@ -27,6 +27,13 @@ const AssesmentScreen = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       fetchData();
+
+      const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.navigate('Anasayfa');
+        return true;
+      });
+
+      return () => backHandler.remove();
     }, [])
   );
 
@@ -60,7 +67,7 @@ const AssesmentScreen = ({ navigation }) => {
   return (
     <View style={assesmentStyles.container}>
       <View style={assesmentStyles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={assesmentStyles.backButton}>
+        <TouchableOpacity onPress={() => navigation.navigate('Anasayfa')} style={assesmentStyles.backButton}>
           <Ionicons name="arrow-back" size={24} color="#000" />
         </TouchableOpacity>
         <Text style={assesmentStyles.headerTitle}>Değerlendirme</Text>

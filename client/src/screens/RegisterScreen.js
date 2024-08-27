@@ -13,7 +13,6 @@ const RegisterScreen = ({ navigation }) => {
   const handleRegister = async (userInfo) => {
     try {
       const response = await registerUser(userInfo);
-      console.log('User registered successfully:', response);
       setPopupMessage('Kayıt işlemi başarıyla tamamlandı.');
       setIsSuccess(true);
       setPopupVisible(true);

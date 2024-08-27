@@ -13,7 +13,6 @@ const LoginScreen = ({ navigation }) => {
   const handleLogin = async (email, password) => {
     try {
       const response = await loginUser(email, password);
-      console.log('User logged in successfully:', response);
       setPopupMessage('Giriş işlemi başarıyla tamamlandı.');
       setPopupVisible(true);
       setAutoClose(true);  // Popup'ın otomatik kapanması için ayarlandı

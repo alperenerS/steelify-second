@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Image, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, Image, ActivityIndicator, Modal, StyleSheet } from 'react-native';
 import ProfileStyles from '../styles/ProfileStyles';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../context/AuthContext';
@@ -11,6 +11,8 @@ const Profile = ({ name, surname, email, phone, photos }) => {
   const navigation = useNavigation();
   const [comments, setComments] = useState([]);
   const [loadingComments, setLoadingComments] = useState(true);
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -47,6 +49,16 @@ const Profile = ({ name, surname, email, phone, photos }) => {
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
+  };
+
+  const handlePhotoPress = (photoUri) => {
+    setSelectedPhoto(photoUri);
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+    setSelectedPhoto(null);
   };
 
   return (
@@ -122,11 +134,32 @@ const Profile = ({ name, surname, email, phone, photos }) => {
           key={selectedTab}
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => (
-            <Image source={{ uri: item.reviewed_image_link }} style={ProfileStyles.photoGrid} />
+            <TouchableOpacity onPress={() => handlePhotoPress(item.reviewed_image_link)}>
+              <Image source={{ uri: item.reviewed_image_link }} style={ProfileStyles.photoGrid} />
+            </TouchableOpacity>
           )}
           contentContainerStyle={{ paddingBottom: 16 }}
         />
       )}
+
+      {/* Modal Popup */}
+      <Modal
+        visible={isModalVisible}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={closeModal}
+      >
+        <View style={ProfileStyles.modalBackground}>
+          <View style={ProfileStyles.modalContent}>
+            {selectedPhoto && (
+              <Image source={{ uri: selectedPhoto }} style={ProfileStyles.fullscreenImage} />
+            )}
+            <TouchableOpacity onPress={closeModal} style={ProfileStyles.closeButton}>
+              <Text style={ProfileStyles.closeButtonText}>Kapat</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

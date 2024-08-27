@@ -125,10 +125,42 @@ const ProfileStyles = StyleSheet.create({
     marginTop: 20,
   },
   photoGrid: {
-    width: '30%',
+    width: '50%',
     aspectRatio: 1,
-    margin: '1.5%',
+    margin: 10,
     borderRadius: 10,
+    backgroundColor: colors.secondary,
+    flex: 1,
+  },
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContent: {
+    width: '90%',
+    height: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 10,
+  },
+  fullscreenImage: {
+    width: '100%',
+    height: '90%',
+    borderRadius: 10,
+  },
+  closeButton: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: '#000',
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: '#fff',
+    fontSize: 16,
   },
 });
 
